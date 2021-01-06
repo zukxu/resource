@@ -24,10 +24,15 @@
 ### 日常用到的工具类
 * 字符切割
 
-#引用的工具类
+#引用的工具类 
+
 1.commons-lang
 
 2.[hutool](https://www.hutool.cn/docs/#/)
+
+3.fastjson
+
+4.minio
 
 # 更新
 2020-7-29 08:59:46      
