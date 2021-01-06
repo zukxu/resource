@@ -1,0 +1,34 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8099
+
+# Spring配置
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/resource?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+# mybatis-plus配置
+mybatis-plus:
+  # 扫描mapper.xml文件
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  # 扫描实体类
+  typeAliasesPackage: com.zukxu.resource.*.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: enable # 全局逻辑删除的实体字段名
+      logic-delete-value: 1  #逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+#minio文件系统
+minio:
+  endpoint: http://192.168.1.215:9000
+  access-key: minio
+  secret-key: 12345678
+  bucket-name: res

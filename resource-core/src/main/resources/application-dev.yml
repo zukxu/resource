@@ -1,0 +1,51 @@
+# 数据源配置
+spring:
+  # IO文件上传配置
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  10MB
+      # 设置总上传的文件大小
+      max-request-size:  20MB
+    # Jackson配置
+    jackson:
+      #参数意义：
+      default-property-inclusion: NON_NULL
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+
+# IO文件存储路径,可以自定义
+file:
+  uploadPath: E:/temp/res
+  returnPath: /res
+
+# 项目相关配置
+project:
+  # 名称
+  name: resource-fast
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2020
+  # 文件路径
+  profile: D:/ruoyi/uploadPath
+  # 验证码类型 math 数组计算 char 字符验证
+  captchaType: math
+
+# 日志配置
+logging:
+  level:
+    com.zukxu: debug
+    org.springframework: warn
+
+#swagger
+swagger:
+  enabled: true
+  groupName: 资源管理项目
+  title: 基础项目系统API接口文档
+  description: 基于knife4j搭建的接口文档
+  author: zukxu
+  url: https://zukxupu.gitee.io/
+  email: zukxu520@163.com
+  version: 1.0.0
+  basePackage: com.zukxu.resource
