@@ -89,7 +89,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		// minioUtils
 		String fileName = fileUtils.getRandomFileName(file.getOriginalFilename());
 		minioUtils.putObject(bulkName, fileName, stream);
-		String objectURL = minioUtils.getPresignedObjectUrl(minio.getBucketName(), fileName, 7);
+		String objectURL = minioUtils.presignedGetObject(minio.getBucketName(), fileName, 7);
 
 		String path = bulkName + "/" + fileName;
 		return path;
