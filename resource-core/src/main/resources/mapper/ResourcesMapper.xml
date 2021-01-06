@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zukxu.resource.core.mapper.ResourcesMapper">
+    <resultMap id="ResourceDTO" type="com.zukxu.resource.common.entity.dto.ResourceDTO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="type_id" jdbcType="VARCHAR" property="typeId"/>
+        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <select id="listInfo" resultMap="ResourceDTO">
+      SELECT a.id, a.name, a.content,a.remark, a.type_id, b.type_name, a.create_time, a.update_time
+    FROM resources a,
+         resource_type b
+    WHERE b.id=a.type_id and a.enable=0
+    <if test="page.fields != null and page.fields != ''">
+        and a.name like CONCAT('%',#{page.fields},'%')
+    </if>
+    <if test="page.index != null and page.index != ''">
+        and a.type_id=#{page.index}
+    </if>
+     order by a.create_time desc
+    limit #{page.size} offset #{page.offset};
+    </select>
+
+    <update id="updResource">
+    update resources set type_id='1' where enable=0 and type_id=#{typeId}
+</update>
+</mapper>
