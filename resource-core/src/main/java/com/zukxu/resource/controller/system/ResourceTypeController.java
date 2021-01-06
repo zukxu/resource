@@ -1,7 +1,7 @@
 package com.zukxu.resource.controller.system;
 
 import com.zukxu.resource.common.entity.dto.PageDTO;
-import com.zukxu.resource.common.entity.model.ApiResult;
+import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.core.entity.ResourceType;
 import com.zukxu.resource.core.service.IResourceTypeService;
 import io.swagger.annotations.Api;
@@ -24,32 +24,32 @@ public class ResourceTypeController {
 
 	@ApiOperation("查询分类列表")
 	@GetMapping("/list")
-	public ApiResult pageInfo(PageDTO entity) {
-		return ApiResult.success(typeService.pageInfo(entity));
+	public Result pageInfo(PageDTO entity) {
+		return Result.success(typeService.pageInfo(entity));
 	}
 
 	@ApiOperation("查询分类详情")
 	@GetMapping
-	public ApiResult get(String id) {
-		return ApiResult.success(typeService.getById(id));
+	public Result get(String id) {
+		return Result.success(typeService.getById(id));
 	}
 
 	@ApiOperation("新增分类")
 	@PostMapping
-	public ApiResult add(@RequestBody ResourceType entity) {
-		return typeService.save(entity) ? ApiResult.success() : ApiResult.error();
+	public Result add(@RequestBody ResourceType entity) {
+		return typeService.save(entity) ? Result.success() : Result.error();
 	}
 
 	@ApiOperation("更新分类")
 	@PutMapping
-	public ApiResult upd(@RequestBody ResourceType entity) {
-		return typeService.updateById(entity) ? ApiResult.success() : ApiResult.error();
+	public Result upd(@RequestBody ResourceType entity) {
+		return typeService.updateById(entity) ? Result.success() : Result.error();
 	}
 
 	@ApiOperation("根据ID删除分类")
 	@DeleteMapping
-	public ApiResult del(String id) {
-		return typeService.delTypeById(id) ? ApiResult.success() : ApiResult.error();
+	public Result del(String id) {
+		return typeService.delTypeById(id) ? Result.success() : Result.error();
 	}
 
 }

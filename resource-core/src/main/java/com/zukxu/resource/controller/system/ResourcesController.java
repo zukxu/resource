@@ -1,7 +1,7 @@
 package com.zukxu.resource.controller.system;
 
 import com.zukxu.resource.common.entity.dto.PageDTO;
-import com.zukxu.resource.common.entity.model.ApiResult;
+import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.core.entity.Resources;
 import com.zukxu.resource.core.service.IResourcesService;
 import io.swagger.annotations.Api;
@@ -24,31 +24,31 @@ public class ResourcesController {
 
 	@ApiOperation("查询资源列表")
 	@GetMapping("/list")
-	public ApiResult pageInfo(PageDTO entity) {
-		return ApiResult.success(resourcesService.pageInfo(entity));
+	public Result pageInfo(PageDTO entity) {
+		return Result.success(resourcesService.pageInfo(entity));
 	}
 
 	@ApiOperation("查询资源详情")
 	@GetMapping
-	public ApiResult get(String id) {
-		return ApiResult.success(resourcesService.getById(id));
+	public Result get(String id) {
+		return Result.success(resourcesService.getById(id));
 	}
 
 	@ApiOperation("新增资源")
 	@PostMapping
-	public ApiResult add(@RequestBody Resources entity) {
-		return resourcesService.save(entity) ? ApiResult.success() : ApiResult.error();
+	public Result add(@RequestBody Resources entity) {
+		return resourcesService.save(entity) ? Result.success() : Result.error();
 	}
 
 	@ApiOperation("更新资源")
 	@PutMapping
-	public ApiResult upd(@RequestBody Resources entity) {
-		return resourcesService.updateById(entity) ? ApiResult.success() : ApiResult.error();
+	public Result upd(@RequestBody Resources entity) {
+		return resourcesService.updateById(entity) ? Result.success() : Result.error();
 	}
 
 	@ApiOperation("删除")
 	@DeleteMapping
-	public ApiResult delete(String id) {
-		return resourcesService.removeById(id) ? ApiResult.success() : ApiResult.error();
+	public Result delete(String id) {
+		return resourcesService.removeById(id) ? Result.success() : Result.error();
 	}
 }

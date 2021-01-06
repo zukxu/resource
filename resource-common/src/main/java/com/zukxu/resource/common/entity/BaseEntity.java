@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.entity.model;
+package com.zukxu.resource.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
