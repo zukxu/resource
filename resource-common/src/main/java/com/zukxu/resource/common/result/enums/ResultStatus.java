@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.result.status;
+package com.zukxu.resource.common.result.enums;
 
 import lombok.Getter;
 import lombok.ToString;

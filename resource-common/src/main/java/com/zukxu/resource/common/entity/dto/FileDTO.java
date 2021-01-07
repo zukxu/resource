@@ -1,6 +1,13 @@
 package com.zukxu.resource.common.entity.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -13,19 +20,15 @@ import lombok.Data;
 @Data
 public class FileDTO {
 	/**
-	 * 文件名
-	 */
-	private String name;
-	/**
-	 * 状态
-	 */
-	private String status;
-	/**
-	 * 访问连接
+	 * 访问路径
 	 */
 	private String url;
 	/**
-	 * 缩略图链接
+	 * 文件名
 	 */
-	private String thumbUrl;
+	private String originName;
+	/**
+	 * 创建时间
+	 */
+	private LocalDateTime createTime;
 }

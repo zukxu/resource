@@ -1,7 +1,7 @@
 package com.zukxu.resource.controller.file;
 
 import com.zukxu.resource.common.result.Result;
-import com.zukxu.resource.common.result.ResultStatus;
+import com.zukxu.resource.common.result.enums.ResultStatus;
 import com.zukxu.resource.core.entity.UploadFile;
 import com.zukxu.resource.core.service.IUploadFileService;
 import io.swagger.annotations.Api;
@@ -40,8 +40,7 @@ public class FileController {
 		if (file.isEmpty() || file.getSize() == 0) {
 			return Result.failure(ResultStatus.PARAMS_IS_NULL);
 		}
-		String path = uploadFileService.fileUpload(file);
-		return Result.success(path);
+		return Result.success(uploadFileService.fileUpload(file));
 	}
 	/**
 	 * 本地文件删除

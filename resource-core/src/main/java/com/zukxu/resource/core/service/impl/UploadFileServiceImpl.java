@@ -2,6 +2,7 @@ package com.zukxu.resource.core.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zukxu.resource.common.config.properties.MinioProperties;
+import com.zukxu.resource.common.entity.dto.FileDTO;
 import com.zukxu.resource.common.utils.FileUtils;
 import com.zukxu.resource.common.utils.MinioUtils;
 import com.zukxu.resource.core.entity.UploadFile;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 
 /**
  * Description:
@@ -44,7 +46,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	private String returnPath;
 
 	@Override
-	public String fileUpload(MultipartFile file) {
+	public FileDTO fileUpload(MultipartFile file) {
 		//文件新名称
 		String newFileName = fileUtils.getRandomFileName(file.getOriginalFilename());
 		//设置文件存储路径，可以存放在你想要指定的路径里面
@@ -70,7 +72,11 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		uploadFile.setOriginName(file.getOriginalFilename());
 		uploadFile.setUrl(url);
 		uploadFileMapper.insert(uploadFile);
-		return url;
+		FileDTO fileDTO = new FileDTO();
+		fileDTO.setOriginName(file.getOriginalFilename());
+		fileDTO.setUrl(url);
+		fileDTO.setCreateTime(LocalDateTime.now());
+		return fileDTO;
 	}
 
 	@Override
@@ -84,7 +90,6 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	@Override
 	public String minioUpload(MultipartFile file) {
 		InputStream stream = fileUtils.getStreamByByte(file);
-		// String bulkName = fileUtils.getFileTypeBySuffix(file);
 		String bulkName =minio.getBucketName();
 		// minioUtils
 		String fileName = fileUtils.getRandomFileName(file.getOriginalFilename());

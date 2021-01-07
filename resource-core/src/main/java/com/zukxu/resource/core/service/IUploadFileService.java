@@ -1,6 +1,7 @@
 package com.zukxu.resource.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zukxu.resource.common.entity.dto.FileDTO;
 import com.zukxu.resource.core.entity.UploadFile;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +18,7 @@ public interface IUploadFileService extends IService<UploadFile> {
 	 * @param file
 	 * @return
 	 */
-	String fileUpload(MultipartFile file);
+	FileDTO fileUpload(MultipartFile file);
 
 	/**
 	 * 本地删除
