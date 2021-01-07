@@ -2,9 +2,13 @@ package com.zukxu.resource.common.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 /**
  * MVC通用配置
@@ -45,5 +49,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.allowCredentials(true)
 				.maxAge(3600);
 
+	}
+
+	/**
+	 * 修复String转换Object问题
+	 * @param converters
+	 */
+	@Override
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.removeIf(converter -> converter instanceof StringHttpMessageConverter);
 	}
 }
