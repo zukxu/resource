@@ -1,7 +1,8 @@
 package com.zukxu.resource.common.result;
 
 
-import cn.hutool.core.util.ObjectUtil;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * 返回结果封装
@@ -9,31 +10,21 @@ import cn.hutool.core.util.ObjectUtil;
  * @author zukxu
  * @date 2020-10-5 22:04:58
  */
+@Getter
+@ToString
 public class Result<T> {
 	/**
-	 * 码
+	 * 业务错误码
 	 */
 	private Integer code;
 	/**
-	 * 消息内容
+	 * 信息描述
 	 */
 	private String message;
 	/**
-	 * 数据对象
+	 * 返回参数
 	 */
 	private T data;
-
-	/**
-	 * 初始化一个新创建的 Result 对象，使其表示一个空消息。
-	 */
-	Result() {
-	}
-
-	private Result(T data) {
-		this.code = 200;
-		this.message = "success";
-		this.data = data;
-	}
 
 	private Result(ResultStatus resultStatus, T data) {
 		this.code = resultStatus.getCode();
@@ -42,99 +33,50 @@ public class Result<T> {
 	}
 
 	/**
-	 * 初始化一个新创建的 Result 对象
-	 *
-	 * @param code    状态码
-	 * @param message 返回内容
-	 * @param data    数据对象
+	 * 业务成功返回业务代码和描述信息
 	 */
-	private Result(int code, String message, T data) {
-		this.code = code;
-		this.message = message;
-		if (ObjectUtil.isNotEmpty(data)) {
-			this.data = data;
-		}
+	public static Result<Void> success() {
+		return success(null);
 	}
 
 	/**
-	 * 返回成功消息
-	 *
-	 * @return 成功消息
-	 */
-	public static <T> Result<T> success() {
-		return new Result("操作成功");
-	}
-
-	/**
-	 * 返回成功数据
-	 *
-	 * @return 成功消息
+	 * 业务成功返回业务代码,描述和返回的参数
 	 */
 	public static <T> Result<T> success(T data) {
-		return Result.success("操作成功", data);
+		return success(ResultStatus.SUCCESS, data);
 	}
 
 	/**
-	 * 返回成功消息
-	 *
-	 * @param msg  返回内容
-	 * @param data 数据对象
-	 * @return 成功消息
+	 * 业务成功返回业务代码,描述和返回的参数
 	 */
-	public static <T> Result<T> success(String msg, T data) {
-		return Result.success(200, msg, data);
+	public static <T> Result<T> success(ResultStatus resultStatus, T data) {
+		if (resultStatus == null) {
+			return success(data);
+		}
+		return new Result<>(resultStatus, data);
 	}
 
 	/**
-	 * 返回成功消息
-	 *
-	 * @param msg  返回内容
-	 * @param data 数据对象
-	 * @return 成功消息
+	 * 业务异常返回业务代码和描述信息
 	 */
-	public static <T> Result<T> success(Integer code, String msg, T data) {
-		return new Result<T>(code, msg, data);
+	public static <T> Result<T> failure() {
+		return failure(ResultStatus.SYSTEM_INNER_ERROR);
 	}
 
 	/**
-	 * 返回错误消息
-	 *
-	 * @return
+	 * 业务异常返回业务代码,描述和返回的参数
 	 */
-	public static <T> Result<T> error() {
-		return Result.error("操作失败");
+	public static <T> Result<T> failure(ResultStatus resultStatus) {
+		return failure(resultStatus, null);
 	}
 
 	/**
-	 * 返回错误消息
-	 *
-	 * @param msg 返回内容
-	 * @return 警告消息
+	 * 业务异常返回业务代码,描述和返回的参数
 	 */
-	public static <T> Result<T> error(String msg) {
-		return Result.error(500, msg);
-	}
-
-	/**
-	 * 返回错误消息
-	 *
-	 * @param code 状态码
-	 * @param msg  返回内容
-	 * @return 警告消息
-	 */
-	public static <T> Result<T> error(int code, String msg) {
-		return Result.error(code, msg, null);
-	}
-
-	/**
-	 * 返回错误消息
-	 *
-	 * @param code 编码
-	 * @param msg  返回内容
-	 * @param data 数据对象
-	 * @return 警告消息
-	 */
-	public static <T> Result<T> error(Integer code, String msg, T data) {
-		return new Result<T>(code, msg, data);
+	public static <T> Result<T> failure(ResultStatus resultStatus, T data) {
+		if (resultStatus == null) {
+			return new Result<>(ResultStatus.SYSTEM_INNER_ERROR, null);
+		}
+		return new Result<>(resultStatus, data);
 	}
 }

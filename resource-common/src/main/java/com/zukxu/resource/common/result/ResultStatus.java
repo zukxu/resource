@@ -1,6 +1,5 @@
 package com.zukxu.resource.common.result;
 
-import io.swagger.models.auth.In;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -18,31 +17,31 @@ public enum ResultStatus {
 	/**
 	 * 成功
 	 */
-	SUCCESS(HttpStatus.SUCCESS, 200, "请求成功"),
+	SUCCESS(SysStatus.SUCCESS, "请求成功"),
 	/**
 	 * 参数错误
 	 */
-	PARAMS_ERROR(HttpStatus.PARAMS_ERROR, 400, "参数错误"),
+	PARAMS_ERROR(SysStatus.PARAMS_ERROR, "参数错误"),
 	/**
 	 * 服务异常
 	 */
-	SYSTEM_INNER_ERROR(HttpStatus.SYSTEM_INNER_ERROR, 500, "系统内部异常"),
-	;
+	SYSTEM_INNER_ERROR(SysStatus.SYSTEM_INNER_ERROR, "系统内部异常"),
 	/**
-	 * HTTP状态码
+	 * 参数为空
 	 */
-	private Integer status;
+	PARAMS_IS_NULL(SysStatus.PARAMS_IS_NULL, "参数为空"),
+	;
+
 	/**
 	 * 系统代码
 	 */
-	private Integer code;
+	private final Integer code;
 	/**
 	 * 消息
 	 */
-	private String message;
+	private final String message;
 
-	ResultStatus(Integer status, Integer code, String message) {
-		this.status = status;
+	ResultStatus(Integer code, String message) {
 		this.code = code;
 		this.message = message;
 	}

@@ -2,24 +2,17 @@ package com.zukxu.resource.common.result;
 
 /**
  * <p>
- * 状态码
+ * 系统状态码
  * </p>
  *
  * @author zukxu
  * @date 2021/1/6 0006 14:31
  */
-public class HttpStatus {
+public class SysStatus {
 	// 成功状态码
 	public static final int SUCCESS = 1;
 
 	// -------------------失败状态码----------------------
-	// 参数错误
-	public static final int PARAMS_IS_NULL = 10001;// 参数为空
-	public static final int PARAMS_NOT_COMPLETE = 10002; // 参数不全
-	public static final int PARAMS_TYPE_ERROR = 1003; // 参数类型错误
-	public static final int PARAMS_IS_INVALID = 10004; // 参数无效
-	public static final int PARAMS_ERROR = 10005; // 参数无效
-
 	// 用户错误
 	public static final int USER_NOT_EXIST = 20001; // 用户不存在
 	public static final int USER_NOT_LOGGED_IN = 20002; // 用户未登陆
@@ -48,4 +41,12 @@ public class HttpStatus {
 
 	// 权限错误
 	public static final int PERMISSION_NO_ACCESS = 70001;// 没有访问权限
+
+	// 参数错误
+	public static final int PARAMS_IS_NULL = 		80001;// 参数为空
+	public static final int PARAMS_NOT_COMPLETE = 	80002; // 参数不全
+	public static final int PARAMS_TYPE_ERROR = 	80003; // 参数类型错误
+	public static final int PARAMS_IS_INVALID = 	80004; // 参数无效
+	public static final int PARAMS_ERROR = 			80005; // 参数无效
+
 }
