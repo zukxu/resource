@@ -1,6 +1,7 @@
 package com.zukxu.resource.common.result;
 
 
+import com.zukxu.resource.common.result.status.ResultStatus;
 import lombok.Getter;
 import lombok.ToString;
 

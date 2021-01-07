@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.result;
+package com.zukxu.resource.common.result.annotations;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 

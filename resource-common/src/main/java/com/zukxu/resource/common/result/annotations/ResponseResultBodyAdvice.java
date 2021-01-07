@@ -1,7 +1,8 @@
-package com.zukxu.resource.common.result;
+package com.zukxu.resource.common.result.annotations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zukxu.resource.common.exception.ResultException;
+import com.zukxu.resource.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;

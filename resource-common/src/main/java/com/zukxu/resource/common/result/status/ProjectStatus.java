@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.result;
+package com.zukxu.resource.common.result.status;
 
 /**
  * <p>
@@ -8,7 +8,7 @@ package com.zukxu.resource.common.result;
  * @author zukxu
  * @date 2021/1/6 0006 14:31
  */
-public class SysStatus {
+public class ProjectStatus {
 	// 成功状态码
 	public static final int SUCCESS = 1;
 

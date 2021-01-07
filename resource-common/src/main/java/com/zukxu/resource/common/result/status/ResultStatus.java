@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.result;
+package com.zukxu.resource.common.result.status;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -17,19 +17,19 @@ public enum ResultStatus {
 	/**
 	 * 成功
 	 */
-	SUCCESS(SysStatus.SUCCESS, "请求成功"),
+	SUCCESS(ProjectStatus.SUCCESS, "请求成功"),
 	/**
 	 * 参数错误
 	 */
-	PARAMS_ERROR(SysStatus.PARAMS_ERROR, "参数错误"),
+	PARAMS_ERROR(ProjectStatus.PARAMS_ERROR, "参数错误"),
 	/**
 	 * 服务异常
 	 */
-	SYSTEM_INNER_ERROR(SysStatus.SYSTEM_INNER_ERROR, "系统内部异常"),
+	SYSTEM_INNER_ERROR(ProjectStatus.SYSTEM_INNER_ERROR, "系统内部异常"),
 	/**
 	 * 参数为空
 	 */
-	PARAMS_IS_NULL(SysStatus.PARAMS_IS_NULL, "参数为空"),
+	PARAMS_IS_NULL(ProjectStatus.PARAMS_IS_NULL, "参数为空"),
 	;
 
 	/**

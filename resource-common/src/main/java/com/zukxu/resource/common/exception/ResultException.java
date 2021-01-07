@@ -1,6 +1,6 @@
 package com.zukxu.resource.common.exception;
 
-import com.zukxu.resource.common.result.ResultStatus;
+import com.zukxu.resource.common.result.status.ResultStatus;
 import lombok.Getter;
 
 /**
