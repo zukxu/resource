@@ -20,7 +20,7 @@ public class ResultException extends Exception {
 	ResultStatus resultStatus;
 
 	public ResultException() {
-		this(ResultStatus.INTERNAL_SERVER_ERROR);
+		this(ResultStatus.SYSTEM_INNER_ERROR);
 	}
 
 	public ResultException(ResultStatus resultStatus) {
