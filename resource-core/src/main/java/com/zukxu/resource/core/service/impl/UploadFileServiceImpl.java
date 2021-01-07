@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -90,7 +91,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	@Override
 	public String minioUpload(MultipartFile file) {
 		InputStream stream = fileUtils.getStreamByByte(file);
-		String bulkName =minio.getBucketName();
+		String bulkName = minio.getBucketName();
 		// minioUtils
 		String fileName = fileUtils.getRandomFileName(file.getOriginalFilename());
 		minioUtils.putObject(bulkName, fileName, stream);
@@ -98,6 +99,17 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 
 		String path = bulkName + "/" + fileName;
 		return path;
+	}
+
+	@Override
+	public void mkdir(String name) {
+		if (!name.endsWith("/")) {
+			name += "/";
+		}
+		boolean folderExist = minioUtils.isFolderExist(minio.getBucketName(), name);
+		if (!folderExist) {
+			minioUtils.putObject(minio.getBucketName(), name, new ByteArrayInputStream(new byte[]{}));
+		}
 	}
 
 	@Override

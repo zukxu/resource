@@ -159,19 +159,17 @@ public class MinioUtils {
 	 * /**
 	 * 通过流上传文件
 	 *
-	 * @param bucketName  存储桶
-	 * @param objectName  文件对象
-	 * @param stream      文件流
-	 * @param size        要上传的stream的size
-	 * @param contentType contentType
+	 * @param bucketName 存储桶
+	 * @param objectName 文件对象
+	 * @param stream     文件流
+	 * @param size       要上传的stream的size
 	 */
 	@SneakyThrows
-	public void putObject(String bucketName, String objectName, InputStream stream, long size, String contentType) {
+	public void putObject(String bucketName, String objectName, InputStream stream, long size) {
 		minioClient.putObject(PutObjectArgs.builder()
 				.bucket(bucketName)
 				.object(objectName)
 				.stream(stream, size, -1)
-				.contentType(contentType)
 				.build());
 	}
 
@@ -184,7 +182,7 @@ public class MinioUtils {
 	 */
 	@SneakyThrows
 	public void putObject(String bucketName, String objectName, InputStream inputStream) {
-		putObject(bucketName, objectName, inputStream, inputStream.available(), "");
+		putObject(bucketName, objectName, inputStream, inputStream.available());
 	}
 
 	/**
@@ -249,8 +247,12 @@ public class MinioUtils {
 	 */
 	public boolean isFolderExist(String bucketName, String objectName) {
 		boolean exist = false;
+		String dirName = "";
+		if (objectName.endsWith("/")) {
+			dirName = objectName.substring(0, objectName.length() - 1);
+		}
 		try {
-			Iterable<Result<Item>> results = listObjects(bucketName, objectName, false);
+			Iterable<Result<Item>> results = listObjects(bucketName, dirName, false);
 			for (Result<Item> result : results) {
 				Item item = result.get();
 				if (item.isDir() && objectName.equals(item.objectName())) {

@@ -38,4 +38,6 @@ public interface IUploadFileService extends IService<UploadFile> {
 	 * @param fileName
 	 */
 	void minioDel(String fileName);
+
+	void mkdir(String name);
 }

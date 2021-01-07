@@ -42,6 +42,7 @@ public class FileController {
 		}
 		return Result.success(uploadFileService.fileUpload(file));
 	}
+
 	/**
 	 * 本地文件删除
 	 */
@@ -49,6 +50,17 @@ public class FileController {
 	@DeleteMapping("/file/del")
 	public Result fileDel(String url) {
 		uploadFileService.fileDel(url);
+		return Result.success();
+	}
+
+	/**
+	 * 创建文件夹
+	 */
+	@ApiOperation("minio创建文件夹")
+	@PostMapping("/minio/makeDir")
+	public Result makeDir(String name) {
+		//判断路径是否以/结尾
+		uploadFileService.mkdir(name);
 		return Result.success();
 	}
 
