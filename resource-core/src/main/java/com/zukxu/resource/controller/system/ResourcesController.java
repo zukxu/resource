@@ -37,18 +37,18 @@ public class ResourcesController {
 	@ApiOperation("新增资源")
 	@PostMapping
 	public Result add(@RequestBody Resources entity) {
-		return resourcesService.save(entity) ? Result.success() : Result.error();
+		return resourcesService.save(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("更新资源")
 	@PutMapping
 	public Result upd(@RequestBody Resources entity) {
-		return resourcesService.updateById(entity) ? Result.success() : Result.error();
+		return resourcesService.updateById(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("删除")
 	@DeleteMapping
 	public Result delete(String id) {
-		return resourcesService.removeById(id) ? Result.success() : Result.error();
+		return resourcesService.removeById(id) ? Result.success() : Result.failure();
 	}
 }

@@ -37,19 +37,19 @@ public class ResourceTypeController {
 	@ApiOperation("新增分类")
 	@PostMapping
 	public Result add(@RequestBody ResourceType entity) {
-		return typeService.save(entity) ? Result.success() : Result.error();
+		return typeService.save(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("更新分类")
 	@PutMapping
 	public Result upd(@RequestBody ResourceType entity) {
-		return typeService.updateById(entity) ? Result.success() : Result.error();
+		return typeService.updateById(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("根据ID删除分类")
 	@DeleteMapping
 	public Result del(String id) {
-		return typeService.delTypeById(id) ? Result.success() : Result.error();
+		return typeService.delTypeById(id) ? Result.success() : Result.failure();
 	}
 
 }

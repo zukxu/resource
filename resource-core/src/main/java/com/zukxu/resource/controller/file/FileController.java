@@ -1,6 +1,7 @@
 package com.zukxu.resource.controller.file;
 
 import com.zukxu.resource.common.result.Result;
+import com.zukxu.resource.common.result.ResultStatus;
 import com.zukxu.resource.core.entity.UploadFile;
 import com.zukxu.resource.core.service.IUploadFileService;
 import io.swagger.annotations.Api;
@@ -37,7 +38,7 @@ public class FileController {
 	@PostMapping("/file")
 	public Result fileUpload(@RequestParam("file") MultipartFile file) {
 		if (file.isEmpty() || file.getSize() == 0) {
-			return Result.error("文件为空");
+			return Result.failure(ResultStatus.PARAMS_IS_NULL);
 		}
 		String path = uploadFileService.fileUpload(file);
 		return Result.success(path);
@@ -59,7 +60,7 @@ public class FileController {
 	@PostMapping("/minio")
 	public Result minio(@RequestParam("file") MultipartFile file) {
 		if (file.isEmpty() || file.getSize() == 0) {
-			return Result.error("文件为空");
+			return Result.failure(ResultStatus.PARAMS_IS_NULL);
 		}
 		String path = uploadFileService.minioUpload(file);
 		return Result.success(path);
