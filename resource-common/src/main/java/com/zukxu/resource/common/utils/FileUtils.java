@@ -111,47 +111,4 @@ public class FileUtils {
 		}
 		return false;
 	}
-
-
-	/**
-	 * ucloud 鉴黄
-	 *
-	 * @param imageUrl
-	 * @return 返回值
-	 * RetCode 0 标识正常 其余一律异常
-	 * Suggestion 建议， pass-放行， forbid-封禁， check-人工审核
-	 */
-	/*public String scan(String imageUrl) throws Exception {
-		//图片绝对路径
-		RestTemplate rest = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-		*//**
-		 * 生成signature，首字母排序
-		 *//*
-		String timestamp = System.currentTimeMillis() + "";
-		SortedMap<Object, Object> packageParams = new TreeMap<>();
-		packageParams.put("PublicKey", uaicensorPublicKey);
-		packageParams.put("ResourceId", resourceId);
-		packageParams.put("Timestamp", timestamp);
-		packageParams.put("Url", imageUrl);
-		String signature = UCloudSigner.createSign(packageParams, uaicensorPrivateKey);
-		*//**
-		 * 参数
-		 *//*
-		MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-		param.add("Scenes", "porn");
-		param.add("Method", "url");
-		param.add("Url", imageUrl);
-		*//**
-		 * headers 参数
-		 *//*
-		headers.setContentType(MediaType.parseMediaType("multipart/form-data; charset=UTF-8"));
-		headers.set("PublicKey", uaicensorPublicKey);
-		headers.set("Signature", signature);
-		headers.set("ResourceId", resourceId);
-		headers.set("Timestamp", timestamp);
-		HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(param, headers);
-		ResponseEntity<String> responseEntity = rest.exchange(ucloudUrl, HttpMethod.POST, httpEntity, String.class);
-		return responseEntity.getBody();
-	}*/
 }

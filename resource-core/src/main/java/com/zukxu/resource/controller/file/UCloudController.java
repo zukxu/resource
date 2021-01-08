@@ -37,6 +37,9 @@ public class UCloudController {
 	@Autowired
 	private UCloudProperties ucloud;
 
+	/**
+	 * 图片鉴黄
+	 */
 	@PostMapping
 	public String check(String imageUrl) {
 		try {
