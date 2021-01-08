@@ -270,7 +270,8 @@ public class SensitiveUtils {
 						break;
 					}
 				}
-			} else {//不存在，直接返回
+			} else {
+				//不存在，直接返回
 				break;
 			}
 		}
@@ -279,12 +280,6 @@ public class SensitiveUtils {
 			matchFlag = 0;
 		}
 		return matchFlag;
-	}
-
-	public static void main(String[] args) {
-		SensitiveUtils utils = new SensitiveUtils();
-		String s = utils.sensitiveHelper("爱液，美丽的少妇爱大屌,少妇女人");
-		System.out.println(s);
 	}
 
 	/**
