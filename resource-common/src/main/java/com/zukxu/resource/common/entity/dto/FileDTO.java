@@ -24,9 +24,17 @@ public class FileDTO {
 	 */
 	private String url;
 	/**
+	 * 预览链接
+	 */
+	private String thumbUrl;
+	/**
 	 * 文件名
 	 */
 	private String originName;
+	/**
+	 * 上传文件名
+	 */
+	private String objectName;
 	/**
 	 * 创建时间
 	 */

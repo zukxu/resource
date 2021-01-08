@@ -378,7 +378,6 @@ public class MinioUtils {
 	 * @return url
 	 */
 	public String getBasisUrl() {
-		String separator = "/";
-		return minio.getEndpoint() + separator + minio.getBucketName() + separator;
+		return minio.getEndpoint() + "/";
 	}
 }
