@@ -31,7 +31,7 @@ public interface IUploadFileService extends IService<UploadFile> {
 	 * @param file
 	 * @return
 	 */
-	String minioUpload(MultipartFile file);
+	FileDTO minioUpload(MultipartFile file);
 
 	/**
 	 * minio文件删除
@@ -39,5 +39,9 @@ public interface IUploadFileService extends IService<UploadFile> {
 	 */
 	void minioDel(String fileName);
 
+	/**
+	 * minio 创建文件夹
+	 * @param name
+	 */
 	void mkdir(String name);
 }

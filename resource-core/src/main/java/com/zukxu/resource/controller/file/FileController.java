@@ -20,6 +20,7 @@ import java.util.List;
  */
 @Api("文件")
 @RestController
+@RequestMapping("/file")
 public class FileController {
 	@Autowired
 	IUploadFileService uploadFileService;
@@ -35,7 +36,7 @@ public class FileController {
 	 * 文件上传
 	 */
 	@ApiOperation("文件本地上传")
-	@PostMapping("/file")
+	@PostMapping
 	public Result fileUpload(@RequestParam("file") MultipartFile file) {
 		if (file.isEmpty() || file.getSize() == 0) {
 			return Result.failure(ResultStatus.PARAMS_IS_NULL);
@@ -50,40 +51,6 @@ public class FileController {
 	@DeleteMapping("/file/del")
 	public Result fileDel(String url) {
 		uploadFileService.fileDel(url);
-		return Result.success();
-	}
-
-	/**
-	 * 创建文件夹
-	 */
-	@ApiOperation("minio创建文件夹")
-	@PostMapping("/minio/makeDir")
-	public Result makeDir(String name) {
-		//判断路径是否以/结尾
-		uploadFileService.mkdir(name);
-		return Result.success();
-	}
-
-	/**
-	 * 文件上传
-	 */
-	@ApiOperation("minio文件上传")
-	@PostMapping("/minio")
-	public Result minio(@RequestParam("file") MultipartFile file) {
-		if (file.isEmpty() || file.getSize() == 0) {
-			return Result.failure(ResultStatus.PARAMS_IS_NULL);
-		}
-		String path = uploadFileService.minioUpload(file);
-		return Result.success(path);
-	}
-
-	/**
-	 * minio文件删除
-	 */
-	@ApiOperation("minio文件删除")
-	@DeleteMapping("/minio/del")
-	public Result minioDel(String fileName) {
-		uploadFileService.minioDel(fileName);
 		return Result.success();
 	}
 }

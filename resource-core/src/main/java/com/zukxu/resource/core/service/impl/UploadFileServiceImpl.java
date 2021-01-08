@@ -75,7 +75,9 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		uploadFileMapper.insert(uploadFile);
 		FileDTO fileDTO = new FileDTO();
 		fileDTO.setOriginName(file.getOriginalFilename());
+		fileDTO.setObjectName(newFileName);
 		fileDTO.setUrl(url);
+		fileDTO.setThumbUrl(minioUtils.getBasisUrl()+url);
 		fileDTO.setCreateTime(LocalDateTime.now());
 		return fileDTO;
 	}
@@ -89,16 +91,24 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	}
 
 	@Override
-	public String minioUpload(MultipartFile file) {
+	public FileDTO minioUpload(MultipartFile file) {
+		//获取文件流
 		InputStream stream = fileUtils.getStreamByByte(file);
+		//判断文件类型并进行鉴黄操作
 		String bulkName = minio.getBucketName();
-		// minioUtils
-		String fileName = fileUtils.getRandomFileName(file.getOriginalFilename());
+		// minioUtils获取新的文件名，防止文件重复
+		String originalFilename = file.getOriginalFilename();
+		String fileName = fileUtils.getRandomFileName(originalFilename);
 		minioUtils.putObject(bulkName, fileName, stream);
-		String objectURL = minioUtils.presignedGetObject(minio.getBucketName(), fileName, 7);
 
-		String path = bulkName + "/" + fileName;
-		return path;
+		String url = bulkName + "/" + fileName;
+		FileDTO fileDTO = new FileDTO();
+		fileDTO.setUrl(url);
+		fileDTO.setThumbUrl(minioUtils.getBasisUrl()+url);
+		fileDTO.setOriginName(originalFilename);
+		fileDTO.setObjectName(fileName);
+		fileDTO.setCreateTime(LocalDateTime.now());
+		return fileDTO;
 	}
 
 	@Override
