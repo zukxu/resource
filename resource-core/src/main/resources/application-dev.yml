@@ -49,3 +49,12 @@ swagger:
   email: zukxu520@163.com
   version: 1.0.0
   basePackage: com.zukxu.resource
+# ===================================
+# UCloud鉴黄
+# ===================================
+ucloud:
+  privateKey: Eosqv9uv7w5An4QkQGob1u7C1OhuKvKheIMP33uWO5qp8y2u82TTTYaFFOq0JHwvMw
+  publicKey: FNcP1ZieOtfB9xCrZci5z04PjbG5C7irU9GyHCob6
+  resourceId: uaicensor-dywmyv4s
+  url: 'http://api.uai.ucloud.cn/v1/image/scan'
+  flag: true
