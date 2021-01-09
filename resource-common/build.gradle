@@ -6,6 +6,14 @@ plugins {
     id 'com.zukxu.java-conventions'
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
 dependencies {
     implementation 'org.springframework:spring-context-support:5.2.9.RELEASE'
     implementation 'org.springframework:spring-web:5.2.9.RELEASE'
@@ -13,19 +21,18 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
     implementation 'commons-io:commons-io:2.8.0'
     implementation 'commons-fileupload:commons-fileupload:1.4'
-    implementation 'org.projectlombok:lombok:1.18.12'
     api 'com.github.xiaoymin:knife4j-spring-boot-starter:2.0.5'
     implementation 'javax.validation:validation-api:2.0.1.Final'
-    implementation 'cn.hutool:hutool-all:5.4.4'
+    api 'cn.hutool:hutool-all:5.4.4'
     api 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
     implementation 'org.springframework:spring-tx:5.2.9.RELEASE'
     implementation 'org.springframework.boot:spring-boot:2.3.4.RELEASE'
     implementation 'org.springframework.boot:spring-boot-configuration-processor:2.3.4.RELEASE'
     implementation 'org.springframework:spring-webmvc:5.2.9.RELEASE'
     implementation 'org.springframework.boot:spring-boot-autoconfigure:2.3.4.RELEASE'
-    implementation 'io.minio:minio:8.0.3'
-    implementation 'com.alibaba:fastjson:1.2.75'
-    implementation 'org.apache.commons:commons-lang3:3.10'
+    api 'io.minio:minio:8.0.3'
+    api 'com.alibaba:fastjson:1.2.75'
+    api 'org.apache.commons:commons-lang3:3.10'
 }
 
 description = 'resource-common'
