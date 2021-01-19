@@ -22,14 +22,6 @@ public interface IResourcesService extends IService<Resources> {
 	IPage<ResourceDTO> pageInfo(PageDTO entity);
 
 	/**
-	 * 批量删除
-	 *
-	 * @param ids
-	 * @return
-	 */
-	Boolean batchDel(String[] ids);
-
-	/**
 	 * 修改分类为未分类
 	 *
 	 * @param typeId
