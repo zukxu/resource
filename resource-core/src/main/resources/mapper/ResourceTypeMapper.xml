@@ -10,10 +10,11 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="enable" jdbcType="BOOLEAN" property="enable"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, type_name, create_time, update_time, `enable`, remark
+        id, type_name, create_time, update_time, `enable`, remark,sort
     </sql>
     <select id="selectOrderByClomn" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/> from resource_type
@@ -23,7 +24,6 @@
 </if>
     order by CONVERT(type_name using gbk)
     <if test="page.size != null">
-
     limit #{page.size}
 </if>
 <if test="page.offset != null">

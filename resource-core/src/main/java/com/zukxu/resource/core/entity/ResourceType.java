@@ -49,5 +49,9 @@ public class ResourceType implements Serializable {
 	 * 备注
 	 */
 	@ApiModelProperty(value = "备注")
-	private String remark;
+	private String remark;/**
+	 * 排序值（大）
+	 */
+	@ApiModelProperty(value = "排序值（大）")
+	private Integer sort;
 }
