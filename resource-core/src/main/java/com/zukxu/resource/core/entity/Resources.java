@@ -54,7 +54,7 @@ public class Resources implements Serializable {
 	/**
 	 * 逻辑删除值（false删除，true存在）
 	 */
-	@ApiModelProperty(value = "逻辑删除值（false删除，true存在）")
+	@ApiModelProperty(value = "逻辑删除值,是否删除")
 	private Boolean enable;
 	/**
 	 * 备注

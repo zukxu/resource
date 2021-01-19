@@ -13,7 +13,6 @@ import com.zukxu.resource.core.service.IResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,13 +26,6 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 
 	@Autowired
 	ResourcesMapper resourcesMapper;
-
-	@Override
-	public Boolean batchDel(String[] ids) {
-		List<String> list = Arrays.asList(ids);
-		int i = resourcesMapper.deleteBatchIds(list);
-		return i > 0;
-	}
 
 	@Override
 	public IPage<ResourceDTO> pageInfo(PageDTO entity) {
