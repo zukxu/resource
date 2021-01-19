@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Description: 资源请求处理
  *
@@ -50,5 +53,13 @@ public class ResourcesController {
 	@DeleteMapping
 	public Result delete(String id) {
 		return resourcesService.removeById(id) ? Result.success() : Result.failure();
+	}
+
+	@ApiOperation("批量删除")
+	@DeleteMapping("/batchDel")
+	public Result deleteBatch(String ids) {
+		String[] idArray = ids.split(",");
+		List<String> list = Arrays.asList(idArray);
+		return resourcesService.removeByIds(list) ? Result.success() : Result.failure();
 	}
 }
