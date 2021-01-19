@@ -40,6 +40,7 @@ public class ResourcesController {
 	@ApiOperation("新增资源")
 	@PostMapping
 	public Result add(@RequestBody Resources entity) {
+		entity.setContent(entity.getContent().trim());
 		return resourcesService.save(entity) ? Result.success() : Result.failure();
 	}
 
