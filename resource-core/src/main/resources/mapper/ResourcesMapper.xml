@@ -45,4 +45,9 @@
     <update id="updResource">
     update resources set type_id='1' where enable=0 and type_id=#{typeId}
 </update>
+
+<insert id="insertResource" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    INSERT INTO resources (create_time, enable, remark, name, content, type_id ) VALUES
+    (#{en.createTime},#{en.enable},#{en.remark},#{en.name},#{en.content},#{en.typeId})
+</insert>
 </mapper>

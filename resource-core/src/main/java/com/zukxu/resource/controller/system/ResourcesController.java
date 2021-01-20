@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,9 +40,7 @@ public class ResourcesController {
 	@ApiOperation("新增资源")
 	@PostMapping
 	public Result add(@RequestBody Resources entity) {
-		entity.setContent(entity.getContent().trim());
-		entity.setCreateTime(LocalDateTime.now());
-		return resourcesService.save(entity) ? Result.success() : Result.failure();
+		return resourcesService.insert(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("更新资源")

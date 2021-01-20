@@ -10,6 +10,7 @@ import com.zukxu.resource.core.service.IResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 /**
  * <p>
@@ -39,7 +40,7 @@ public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper,
 			if (resourcesService.removeById(id)) {
 				//添加事务
 				resourceAffair.setStatus(2);
-				resourceAffair.setHandleRemark("无法连通");
+				resourceAffair.setHandleRemark("资源地址无法访问");
 				return affairMapper.insert(resourceAffair);
 			}
 		}

@@ -29,4 +29,10 @@ public interface IResourcesService extends IService<Resources> {
 	 */
 	int updResource(String typeId);
 
+	/**
+	 * 插入数据
+	 * @param entity
+	 * @return
+	 */
+	boolean insert(Resources entity);
 }

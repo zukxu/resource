@@ -7,8 +7,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.common.model.dto.ResourceDTO;
+import com.zukxu.resource.core.entity.ResourceAffair;
 import com.zukxu.resource.core.entity.Resources;
 import com.zukxu.resource.core.mapper.ResourcesMapper;
+import com.zukxu.resource.core.service.IResourceAffairService;
 import com.zukxu.resource.core.service.IResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 
 	@Autowired
 	ResourcesMapper resourcesMapper;
+	@Autowired
+	IResourceAffairService affairService;
 
 	@Override
 	public IPage<ResourceDTO> pageInfo(PageDTO entity) {
@@ -47,6 +51,17 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 	@Override
 	public int updResource(String typeId) {
 		return resourcesMapper.updResource(typeId);
+	}
+
+	@Override
+	public boolean insert(Resources entity) {
+		int insert = resourcesMapper.insertResource(entity);
+		if (0 == insert) {
+			return false;
+		}
+		ResourceAffair affair = new ResourceAffair();
+		affair.setRelationId(entity.getId());
+		return affairService.save(affair);
 	}
 }
 

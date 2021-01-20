@@ -29,4 +29,11 @@ public interface ResourcesMapper extends BaseMapper<Resources> {
 	 * @return
 	 */
 	int updResource(String typeId);
+
+	/**
+	 * 插入数据
+	 * @param entity
+	 * @return
+	 */
+	int insertResource(@Param("en") Resources entity);
 }
