@@ -16,13 +16,13 @@
     <!--@mbg.generated-->
     id, create_time, update_time, `enable`, remark, type_name, sort
   </sql>
-    <select id="selectOrderByClomn" resultMap="BaseResultMap">
+    <select id="selectByPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from resource_type
     where enable=0
     <if test="page.fields != null and page.fields != ''">
     and type_name like CONCAT('%',#{page.fields},'%')
 </if>
-    order by CONVERT(type_name using gbk)
+    order by sort
     <if test="page.size != null">
     limit #{page.size}
 </if>

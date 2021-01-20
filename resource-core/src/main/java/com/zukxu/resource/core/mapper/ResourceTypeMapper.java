@@ -20,5 +20,5 @@ public interface ResourceTypeMapper extends BaseMapper<ResourceType> {
 	 * @param entity
 	 * @return
 	 */
-	List<ResourceType> selectOrderByClomn(@Param("page") PageDTO entity);
+	List<ResourceType> selectByPage(@Param("page") PageDTO entity);
 }

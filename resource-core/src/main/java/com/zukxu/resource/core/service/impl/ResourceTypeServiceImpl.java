@@ -38,7 +38,7 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 	@Override
 	public IPage<ResourceType> pageInfo(PageDTO entity) {
 		IPage<ResourceType> page = new Page<>();
-		List<ResourceType> typeList = typeMapper.selectOrderByClomn(entity);
+		List<ResourceType> typeList = typeMapper.selectByPage(entity);
 		if (entity.getCurrent() != null && entity.getSize() != null) {
 			entity.setNewOffset();
 			page.setCurrent(entity.getCurrent()).setSize(entity.getSize());
