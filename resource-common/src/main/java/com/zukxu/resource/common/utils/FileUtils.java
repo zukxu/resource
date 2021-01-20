@@ -2,21 +2,12 @@ package com.zukxu.resource.common.utils;
 
 import lombok.SneakyThrows;
 import org.apache.commons.fileupload.disk.DiskFileItem;
-import org.springframework.http.*;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.net.FileNameMap;
-import java.net.URLConnection;
 import java.util.Random;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 /**
  * <p>
@@ -26,15 +17,17 @@ import java.util.TreeMap;
  * @author zukxu
  * @date 2020/12/31 0031 11:44
  */
-@Component
-public class FileUtils {
+public final class FileUtils {
+	private FileUtils() {
+	}
+
 	/**
 	 * 获取随机文件名
 	 *
 	 * @return InputStream
 	 */
 	@SneakyThrows
-	public String getRandomFileName(String fileName) {
+	public static String getRandomFileName(String fileName) {
 		//生成随机数
 		Random rand = new Random();
 		int random = Math.abs(rand.nextInt());
@@ -50,7 +43,7 @@ public class FileUtils {
 	 * @return InputStream
 	 */
 	@SneakyThrows
-	public InputStream getStreamByByte(MultipartFile file) {
+	public static InputStream getStreamByByte(MultipartFile file) {
 		byte[] bytes = file.getBytes();
 		InputStream stream = new ByteArrayInputStream(bytes);
 		stream.close();
@@ -64,7 +57,7 @@ public class FileUtils {
 	 * @return InputStream
 	 */
 	@SneakyThrows
-	public InputStream getStreamByCommons(MultipartFile file) {
+	public static InputStream getStreamByCommons(MultipartFile file) {
 		CommonsMultipartFile cFile = (CommonsMultipartFile) file;
 		DiskFileItem fileItem = (DiskFileItem) cFile.getFileItem();
 		InputStream stream = fileItem.getInputStream();
@@ -78,7 +71,7 @@ public class FileUtils {
 	 * @param file
 	 * @return
 	 */
-	public String getFileTypeBySuffix(MultipartFile file) {
+	public static String getFileTypeBySuffix(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
 		assert fileName != null;
 		String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -100,7 +93,7 @@ public class FileUtils {
 		}
 	}
 
-	public boolean isValid(String contentType, String... allowTypes) {
+	public static boolean isValid(String contentType, String... allowTypes) {
 		if (null == contentType || "".equals(contentType)) {
 			return false;
 		}

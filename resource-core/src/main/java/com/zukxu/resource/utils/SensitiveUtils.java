@@ -13,8 +13,7 @@ import java.util.*;
  *
  * @author zukxu
  */
-public class SensitiveUtils {
-
+public final class SensitiveUtils {
 	/**
 	 * 最小匹配规则，如：敏感词库["中国","中国人"]，语句："我是中国人"，匹配结果：我是[中国]人
 	 */
@@ -23,7 +22,6 @@ public class SensitiveUtils {
 	 * 最大匹配规则，如：敏感词库["中国","中国人"]，语句："我是中国人"，匹配结果：我是[中国人]
 	 */
 	public static final int MaxMatchType = 2;
-
 	/**
 	 * 敏感词集合
 	 */
@@ -47,6 +45,9 @@ public class SensitiveUtils {
 
 		//初始化敏感词库
 		SensitiveUtils.initSensitiveWordMap(sensitiveWordSet);
+	}
+
+	private SensitiveUtils() {
 	}
 
 	/**
@@ -280,24 +281,5 @@ public class SensitiveUtils {
 			matchFlag = 0;
 		}
 		return matchFlag;
-	}
-
-	/**
-	 * 敏感词替换工具方法（对外方法）
-	 *
-	 * @param text 待检测字符串
-	 * @return
-	 * @throws IOException 读写文件异常
-	 */
-	public String sensitiveHelper(String text) {
-
-		//判断是否包含敏感词库
-		if (contains(text)) {
-			//若包含返回替换后的字符
-			String str = SensitiveUtils.replaceSensitiveWord(text, "**");
-			return str;
-		}
-		//不包含返回原本字符
-		return text;
 	}
 }
