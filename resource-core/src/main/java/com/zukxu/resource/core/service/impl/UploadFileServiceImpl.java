@@ -75,7 +75,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		fileDTO.setOriginName(file.getOriginalFilename());
 		fileDTO.setObjectName(newFileName);
 		fileDTO.setUrl(url);
-		fileDTO.setThumbUrl(minioUtils.getBasisUrl()+url);
+		fileDTO.setThumbUrl(minioUtils.getBasisUrl() + url);
 		fileDTO.setCreateTime(LocalDateTime.now());
 		return fileDTO;
 	}
@@ -102,7 +102,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		String url = bulkName + "/" + fileName;
 		FileDTO fileDTO = new FileDTO();
 		fileDTO.setUrl(url);
-		fileDTO.setThumbUrl(minioUtils.getBasisUrl()+url);
+		fileDTO.setThumbUrl(minioUtils.getBasisUrl() + url);
 		fileDTO.setOriginName(originalFilename);
 		fileDTO.setObjectName(fileName);
 		fileDTO.setCreateTime(LocalDateTime.now());
@@ -125,5 +125,6 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		minioUtils.removeObject(minio.getBucketName(), fileName);
 	}
 }
+
 
 

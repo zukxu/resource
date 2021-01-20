@@ -32,7 +32,7 @@ public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper,
 	public int affair(String id) {
 		Resources byId = resourcesService.getById(id);
 		ResourceAffair resourceAffair = new ResourceAffair();
-		resourceAffair.setRelationId(id);
+		resourceAffair.setRelationId(Integer.parseInt(id));
 		resourceAffair.setType(1);
 		if (-1 == URLUtils.isConnect(byId.getContent())) {
 			//不能连通，进行移除(修改)
@@ -46,3 +46,4 @@ public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper,
 		return 0;
 	}
 }
+

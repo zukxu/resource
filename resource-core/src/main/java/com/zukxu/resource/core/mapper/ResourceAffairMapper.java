@@ -5,12 +5,12 @@ import com.zukxu.resource.core.entity.ResourceAffair;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
-  *<p>
-  * $END
-  *</p>
-  * @author zukxu
-  * @date   2021/1/20 0020 11:32
-  * 
+ * <p>
+ * $END
+ * </p>
+ *
+ * @author zukxu
+ * @date 2021/1/20 0020 16:24
  */
 @Mapper
 public interface ResourceAffairMapper extends BaseMapper<ResourceAffair> {

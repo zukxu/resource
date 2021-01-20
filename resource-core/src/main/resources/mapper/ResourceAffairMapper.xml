@@ -4,14 +4,14 @@
   <resultMap id="BaseResultMap" type="com.zukxu.resource.core.entity.ResourceAffair">
     <!--@mbg.generated-->
     <!--@Table resource_affair-->
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="enable" jdbcType="BOOLEAN" property="enable" />
-    <result column="relation_id" jdbcType="VARCHAR" property="relationId" />
-    <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="handle_remark" jdbcType="VARCHAR" property="handleRemark" />
+    <id column="id" property="id" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="enable" property="enable" />
+    <result column="relation_id" property="relationId" />
+    <result column="type" property="type" />
+    <result column="status" property="status" />
+    <result column="handle_remark" property="handleRemark" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
