@@ -64,7 +64,7 @@ public class ResourceAffair implements Serializable {
 	 * 事务状态（0-待审核 1-审核失败 2-审核成功)
 	 */
 	@TableField(value = "status")
-	@ApiModelProperty(value = "事务状态（0-待审核 1-审核失败 2-审核成功)")
+	@ApiModelProperty(value = "事务状态(0-待审核 1-审核通过 2-审核不通过)")
 	private Integer status;
 	/**
 	 * 处理意见

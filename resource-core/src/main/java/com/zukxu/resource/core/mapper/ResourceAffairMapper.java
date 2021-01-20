@@ -3,6 +3,7 @@ package com.zukxu.resource.core.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zukxu.resource.core.entity.ResourceAffair;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -14,4 +15,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ResourceAffairMapper extends BaseMapper<ResourceAffair> {
+	/**
+	 * 根据relationId查询
+	 * @param id
+	 * @return
+	 */
+	ResourceAffair selectByrelationId(@Param("relationId") String id);
 }

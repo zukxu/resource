@@ -16,5 +16,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, update_time, `enable`, relation_id, `type`, `status`, handle_remark
-  </sql>
+  </sql><select id="selectByrelationId" resultMap="BaseResultMap">
+  select * from resource_affair where enable=0 and relation_id=#{relationId}
+</select>
 </mapper>
