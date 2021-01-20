@@ -1,12 +1,11 @@
 package com.zukxu.resource.core.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zukxu.resource.common.utils.URLUtils;
 import com.zukxu.resource.core.entity.ResourceAffair;
 import com.zukxu.resource.core.mapper.ResourceAffairMapper;
-import com.zukxu.resource.core.service.ResourceAffairService;
+import com.zukxu.resource.core.service.IResourceAffairService;
+import org.springframework.stereotype.Service;
 /**
   *<p>
   * $END
@@ -16,6 +15,11 @@ import com.zukxu.resource.core.service.ResourceAffairService;
   * 
  */
 @Service
-public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper, ResourceAffair> implements ResourceAffairService{
+public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper, ResourceAffair> implements IResourceAffairService {
 
+	@Override
+	public int affair(String id) {
+		URLUtils.isConnect("");
+		return 0;
+	}
 }
