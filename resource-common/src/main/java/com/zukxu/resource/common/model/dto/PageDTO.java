@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.entity.dto;
+package com.zukxu.resource.common.model.dto;
 
 import lombok.Data;
 
