@@ -1,7 +1,7 @@
 package com.zukxu.resource.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zukxu.resource.common.entity.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.core.entity.ResourceType;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -2,8 +2,8 @@ package com.zukxu.resource.core.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zukxu.resource.common.entity.dto.PageDTO;
-import com.zukxu.resource.common.entity.dto.ResourceDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.ResourceDTO;
 import com.zukxu.resource.core.entity.Resources;
 
 /**

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zukxu.resource.core.mapper.ResourcesMapper">
-    <resultMap id="ResourceDTO" type="com.zukxu.resource.common.entity.dto.ResourceDTO">
+    <resultMap id="ResourceDTO" type="com.zukxu.resource.common.model.dto.ResourceDTO">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>

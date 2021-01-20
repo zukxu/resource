@@ -1,6 +1,6 @@
 package com.zukxu.resource.controller.file;
 
-import com.zukxu.resource.common.entity.dto.FileDTO;
+import com.zukxu.resource.common.model.dto.FileDTO;
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.common.result.annotations.ResponseResultBody;
 import com.zukxu.resource.common.result.enums.ResultStatus;
@@ -31,8 +31,6 @@ public class MinioController {
 	@GetMapping("/List")
 	public List getFile() {
 		return uploadFileService.list();
-		// List<UploadFile> list =
-		// return Result.success(list);
 	}
 
 	/**

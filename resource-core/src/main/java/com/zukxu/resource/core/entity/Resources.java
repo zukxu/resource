@@ -25,21 +25,6 @@ public class Resources implements Serializable {
 	@ApiModelProperty(value = "主键id")
 	private String id;
 	/**
-	 * 资源名
-	 */
-	@ApiModelProperty(value = "资源名")
-	private String name;
-	/**
-	 * 资源内容
-	 */
-	@ApiModelProperty(value = "资源内容")
-	private String content;
-	/**
-	 * 资源分类Id
-	 */
-	@ApiModelProperty(value = "资源分类Id")
-	private String typeId;
-	/**
 	 * 创建时间
 	 */
 	@ApiModelProperty(value = "创建时间")
@@ -61,4 +46,20 @@ public class Resources implements Serializable {
 	 */
 	@ApiModelProperty(value = "备注")
 	private String remark;
+	/**
+	 * 资源名
+	 */
+	@ApiModelProperty(value = "资源名")
+	private String name;
+	/**
+	 * 资源内容
+	 */
+	@ApiModelProperty(value = "资源内容")
+	private String content;
+	/**
+	 * 资源分类Id
+	 */
+	@ApiModelProperty(value = "资源分类Id")
+	private String typeId;
+
 }

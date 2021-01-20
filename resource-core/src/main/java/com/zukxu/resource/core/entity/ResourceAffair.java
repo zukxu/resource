@@ -32,7 +32,7 @@ public class ResourceAffair implements Serializable {
 	/**
 	 * 主键id
 	 */
-	@TableId(value = "id", type = IdType.INPUT)
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
 	@ApiModelProperty(value = "主键id")
 	private String id;
 
@@ -70,7 +70,7 @@ public class ResourceAffair implements Serializable {
 	 * )
 	 */
 	@TableField(value = "type")
-	@ApiModelProperty(value = "事务类型（,                                                                        0-新增,                                                                        1-修改,                                                                        2-置顶,                                                                        3-特殊,)")
+	@ApiModelProperty(value = "事务类型（0-新增,1-修改,2-置顶,3-特殊,)")
 	private Integer type;
 
 	/**
@@ -78,11 +78,10 @@ public class ResourceAffair implements Serializable {
 	 * 0-待审核
 	 * 1-审核失败
 	 * 2-审核成功
-	 * 3-人工审核
 	 * )
 	 */
 	@TableField(value = "status")
-	@ApiModelProperty(value = "事务状态（,                                                                        0-待审核,                                                                        1-审核失败,                                                                        2-审核成功,                                                                        3-人工审核,)")
+	@ApiModelProperty(value = "事务状态（0-待审核,1-审核失败,2-审核成功)")
 	private Integer status;
 
 	/**

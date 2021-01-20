@@ -3,7 +3,7 @@ package com.zukxu.resource.core.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zukxu.resource.common.entity.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.core.entity.ResourceType;
 import com.zukxu.resource.core.mapper.ResourceTypeMapper;
 import com.zukxu.resource.core.service.IResourceTypeService;

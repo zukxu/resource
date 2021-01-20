@@ -1,6 +1,6 @@
 package com.zukxu.resource.controller.system;
 
-import com.zukxu.resource.common.entity.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.core.entity.ResourceType;
 import com.zukxu.resource.core.service.IResourceTypeService;

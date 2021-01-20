@@ -3,10 +3,14 @@ package com.zukxu.resource.controller.system;
 import com.zukxu.resource.core.service.IResourceAffairService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -24,19 +28,22 @@ public class ResourceAffairController {
 	IResourceAffairService affairService;
 
 	@ApiOperation("审核")
-	@GetMapping
+	@PostMapping
 	public int affair(String id) {
 		return affairService.affair(id);
 	}
 
 	@ApiOperation("批量审核")
-	@GetMapping("/batchAffair")
-	@Transactional
-	public int batchAffair(String ids) {
-		String[] split = ids.split(",");
-		for (String id : split) {
-
+	@PostMapping("/batchAffair")
+	public Boolean batchAffair(@RequestBody Map params) {
+		List<String> ids = Arrays.asList(params.get("ids").toString().split(","));
+		Boolean isOk = true;
+		for (String id : ids) {
+			if (0 == affairService.affair(id)) {
+				isOk = false;
+				break;
+			}
 		}
-		return 0;
+		return isOk;
 	}
 }
