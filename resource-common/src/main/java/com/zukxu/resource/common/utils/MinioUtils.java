@@ -1,6 +1,6 @@
 package com.zukxu.resource.common.utils;
 
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONObject;
 import com.zukxu.resource.common.config.properties.MinioProperties;
 import io.minio.*;
 import io.minio.http.Method;
@@ -366,7 +366,7 @@ public class MinioUtils {
 	@SneakyThrows
 	public JSONObject getBucketPolicy(String bucketName) {
 		String bucketPolicy = minioClient.getBucketPolicy(GetBucketPolicyArgs.builder().bucket(bucketName).build());
-		return JSONObject.parseObject(bucketPolicy);
+		return new JSONObject().getJSONObject(bucketPolicy);
 	}
 	/**
 	 setBucketPolicy 设置桶权限

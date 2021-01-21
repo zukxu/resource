@@ -1,6 +1,5 @@
 package com.zukxu.resource.common.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -53,13 +52,11 @@ public class ResourceDTO {
 	 * 创建时间
 	 */
 	@ApiModelProperty(value = "创建时间")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime createTime;
 	/**
 	 * 更新时间
 	 */
 	@ApiModelProperty(value = "更新时间")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime updateTime;
 	/**
 	 * 备注

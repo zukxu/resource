@@ -19,7 +19,6 @@ dependencies {
     api 'cn.hutool:hutool-all:5.4.4'
     api 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
     api 'io.minio:minio:8.0.3'
-    api 'com.alibaba:fastjson:1.2.75'
     api 'org.apache.commons:commons-lang3:3.10'
     implementation 'org.springframework:spring-context-support:5.2.9.RELEASE'
     implementation 'org.springframework:spring-web:5.2.9.RELEASE'
