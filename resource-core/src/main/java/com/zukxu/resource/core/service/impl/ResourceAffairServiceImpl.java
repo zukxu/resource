@@ -31,15 +31,15 @@ public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper,
 	@Transactional(rollbackFor = Exception.class)
 	public int affair(String id) {
 		Resources byId = resourcesService.getById(id);
-		ResourceAffair resourceAffair = affairMapper.selectByrelationId(id);
-		resourceAffair.setRelationId(Integer.parseInt(id));
-		resourceAffair.setType(1);
 		if (-1 == URLUtils.isConnect(byId.getContent())) {
+			ResourceAffair resourceAffair = affairMapper.selectByrelationId(id);
+			assert resourceAffair != null;
+			resourceAffair.setType(1);
 			//不能连通，进行审核不通过
-			//修改事务
 			resourceAffair.setStatus(2);
+			//修改事务备注
 			resourceAffair.setHandleRemark("资源地址无法访问");
-			return affairMapper.insert(resourceAffair);
+			return affairMapper.updateById(resourceAffair);
 		}
 		return 0;
 	}

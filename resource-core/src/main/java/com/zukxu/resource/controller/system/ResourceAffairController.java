@@ -1,12 +1,10 @@
 package com.zukxu.resource.controller.system;
 
+import com.zukxu.resource.core.entity.ResourceAffair;
 import com.zukxu.resource.core.service.IResourceAffairService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,9 +26,9 @@ public class ResourceAffairController {
 	IResourceAffairService affairService;
 
 	@ApiOperation("审核")
-	@PostMapping
-	public int affair(String id) {
-		return affairService.affair(id);
+	@PutMapping
+	public Boolean affair(ResourceAffair entity) {
+		return affairService.updateById(entity);
 	}
 
 	@ApiOperation("批量审核")
