@@ -2,7 +2,7 @@ package com.zukxu.resource.controller.test;
 
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.common.result.enums.ResultStatus;
-import com.zukxu.resource.common.utils.SpringUtils;
+import com.zukxu.resource.common.utils.ThreadPoolUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -65,7 +65,7 @@ public class TestController {
 	 */
 
 	public List<String> multiProcess(List<String> inputList) {
-		ThreadPoolTaskExecutor executor = SpringUtils.getBean("threadPoolTaskExecutor", ThreadPoolTaskExecutor.class);
+		ThreadPoolTaskExecutor executor = ThreadPoolUtils.getBean("threadPoolTaskExecutor", ThreadPoolTaskExecutor.class);
 		CountDownLatch latch = new CountDownLatch(inputList.size());
 		List<String> outputList = Collections.synchronizedList(new ArrayList<>(inputList.size()));
 
