@@ -37,9 +37,10 @@ public class ResourceAffairController {
 	@ApiOperation("批量审核")
 	@PostMapping("/batchAffair")
 	public Result batchAffair(@RequestBody Map params) {
+		long l = System.currentTimeMillis();
 		List<String> ids = Arrays.asList(params.get("ids").toString().split(","));
 		List<String> failId = new ArrayList<>(ids.size());
-		Boolean isOk = true;
+		boolean isOk = true;
 		for (String id : ids) {
 			if (0 == affairService.affair(id)) {
 				isOk = false;
@@ -47,6 +48,8 @@ public class ResourceAffairController {
 				continue;
 			}
 		}
+		System.out.println("运行时间");
+		System.out.println(System.currentTimeMillis() - l+"ms");
 		return isOk ? Result.success() : Result.failure(ResultStatus.DATA_IS_WRONG, failId);
 
 	}
