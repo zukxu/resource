@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -37,20 +36,9 @@ public class ResourceAffairController {
 	@ApiOperation("批量审核")
 	@PostMapping("/batchAffair")
 	public Result batchAffair(@RequestBody Map params) {
-		long l = System.currentTimeMillis();
 		List<String> ids = Arrays.asList(params.get("ids").toString().split(","));
-		List<String> failId = new ArrayList<>(ids.size());
-		boolean isOk = true;
-		for (String id : ids) {
-			if (0 == affairService.affair(id)) {
-				isOk = false;
-				failId.add(id);
-				continue;
-			}
-		}
-		System.out.println("运行时间");
-		System.out.println(System.currentTimeMillis() - l+"ms");
-		return isOk ? Result.success() : Result.failure(ResultStatus.DATA_IS_WRONG, failId);
+		List<String> failId = affairService.batchAffair(ids);
+		return failId.size() == 0 ? Result.success() : Result.failure(ResultStatus.DATA_IS_WRONG, failId);
 
 	}
 }

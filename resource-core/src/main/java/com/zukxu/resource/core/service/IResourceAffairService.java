@@ -3,6 +3,8 @@ package com.zukxu.resource.core.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zukxu.resource.core.entity.ResourceAffair;
 
+import java.util.List;
+
 /**
  * <p>
  * $END
@@ -14,10 +16,9 @@ import com.zukxu.resource.core.entity.ResourceAffair;
 public interface IResourceAffairService extends IService<ResourceAffair> {
 
 	/**
-	 * 审核资源
-	 *
-	 * @param id
+	 * 批量审核
+	 * @param ids
 	 * @return
 	 */
-	int affair(String id);
+	List<String> batchAffair(List<String> ids);
 }
