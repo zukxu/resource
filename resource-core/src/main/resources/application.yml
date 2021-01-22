@@ -32,3 +32,9 @@ minio:
   access-key: minio
   secret-key: 12345678
   bucket-name: res
+#线程池
+thread-pool:
+  core-pool-size: 4
+  max-pool-size: 16
+  queue-capacity: 80
+  keep-alive-seconds: 120
