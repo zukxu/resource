@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class ResourcesController {
 	@ApiOperation("更新资源")
 	@PutMapping
 	public Result upd(@RequestBody Resources entity) {
+		entity.setUpdateTime(LocalDateTime.now());
 		return resourcesService.updateById(entity) ? Result.success() : Result.failure();
 	}
 

@@ -1,8 +1,13 @@
 package com.zukxu.resource.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zukxu.resource.common.model.dto.PageDTO;import com.zukxu.resource.common.model.dto.ResourceDTO;import com.zukxu.resource.core.entity.Resources;
-import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;import java.util.List;
+import com.zukxu.resource.common.model.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.ResourceDTO;
+import com.zukxu.resource.core.entity.Resources;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -32,6 +37,7 @@ public interface ResourcesMapper extends BaseMapper<Resources> {
 
 	/**
 	 * 插入数据
+	 *
 	 * @param entity
 	 * @return
 	 */

@@ -14,6 +14,7 @@ import com.zukxu.resource.core.service.IResourceAffairService;
 import com.zukxu.resource.core.service.IResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public boolean insert(Resources entity) {
 		int insert = resourcesMapper.insertResource(entity);
 		if (0 == insert) {

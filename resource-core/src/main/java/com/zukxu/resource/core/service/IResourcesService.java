@@ -31,6 +31,7 @@ public interface IResourcesService extends IService<Resources> {
 
 	/**
 	 * 插入数据
+	 *
 	 * @param entity
 	 * @return
 	 */
