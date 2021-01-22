@@ -15,10 +15,11 @@ public final class URLUtils {
 	private static URL url;
 	private static HttpURLConnection con;
 	private static int state = -1;
-	
+
 	private URLUtils() {
 
 	}
+
 	/**
 	 * 功能：检测当前URL是否可连接或是否有效,
 	 * 描述：最多连接网络 5 次, 如果 5 次都不成功，视为该地址不可用
@@ -29,13 +30,19 @@ public final class URLUtils {
 
 	public static synchronized int isConnect(String urlStr) {
 		int counts = 0;
-		while (counts < 5) {
+		while (counts < 3) {
 			try {
 				url = new URL(urlStr);
 				con = (HttpURLConnection) url.openConnection();
+				//设置缓存
+				con.setUseCaches(false);
+				// 设置超时时间
+				con.setConnectTimeout(1500);
 				state = con.getResponseCode();
 				if (state == 200) {
 					break;
+				} else {
+					counts++;
 				}
 			} catch (Exception ex) {
 				counts++;

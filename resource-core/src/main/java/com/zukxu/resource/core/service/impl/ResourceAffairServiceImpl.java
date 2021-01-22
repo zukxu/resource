@@ -41,7 +41,7 @@ public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper,
 			resourceAffair.setHandleRemark("资源地址无法访问");
 			return affairMapper.updateById(resourceAffair);
 		}
-		return 0;
+		return 2;
 	}
 }
 
