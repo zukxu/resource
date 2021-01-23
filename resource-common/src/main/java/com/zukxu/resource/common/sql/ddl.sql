@@ -21,7 +21,9 @@ create table if not exists resource_type
     enable      tinyint(1) default 0                     null comment '逻辑删除值（false删除，true存在）',
     remark      varchar(255)                             null comment '备注',
     type_name   varchar(255)                             not null comment '资源分类名',
-    sort        int        default 0                     null comment '排序值（大）'
+    sort        int        default 0                     null comment '排序值（大）',
+    icon        varchar(255)                         null comment '图标',
+    parent_id        int        default -1                     null comment '上层父id'
 )
     comment '资源分类表';
 INSERT INTO resource.resource_type (id, create_time, update_time, enable, remark, type_name, sort) VALUES (1, '2020-12-11 16:42:24', '2021-01-22 10:29:21', 0, null, '未分类', 0);
