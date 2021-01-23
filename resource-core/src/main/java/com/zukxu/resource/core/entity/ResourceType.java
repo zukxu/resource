@@ -72,5 +72,18 @@ public class ResourceType implements Serializable {
 	@ApiModelProperty(value = "排序值（大）")
 	private Integer sort;
 
+	/**
+	 * 图标
+	 */
+	@TableField(value = "icon")
+	@ApiModelProperty(value = "图标")
+	private String  icon;
+	/**
+	 * 上层父id
+	 */
+	@TableField(value = "parent_id")
+	@ApiModelProperty(value = "上层父id")
+	private String  parentId;
+
 	private static final long serialVersionUID = 1L;
 }

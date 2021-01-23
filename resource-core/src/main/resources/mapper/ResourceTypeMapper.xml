@@ -11,10 +11,12 @@
     <result column="remark" property="remark" />
     <result column="type_name" property="typeName" />
     <result column="sort" property="sort" />
+    <result column="icon" property="icon" />
+    <result column="parent_id" property="parentId" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, `enable`, remark, type_name, sort
+    id, create_time, update_time, `enable`, remark, type_name, sort,icon,parent_id
   </sql>
     <select id="selectByPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from resource_type
