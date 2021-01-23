@@ -28,7 +28,7 @@ mybatis-plus:
 
 #minio文件系统
 minio:
-  endpoint: http://192.168.1.215:9000
+  endpoint: http://192.168.100.215:9000
   access-key: minio
   secret-key: 12345678
   bucket-name: res
