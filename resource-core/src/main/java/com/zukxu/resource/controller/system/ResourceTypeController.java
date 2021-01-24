@@ -30,8 +30,8 @@ public class ResourceTypeController {
 
 	@ApiOperation("查询分类详情")
 	@GetMapping
-	public Result get(String id) {
-		return Result.success(typeService.getById(id));
+	public ResourceType get(@RequestParam(value = "id") String id) {
+		return typeService.getById(id);
 	}
 
 	@ApiOperation("新增分类")

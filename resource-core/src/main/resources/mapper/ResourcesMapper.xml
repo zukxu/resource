@@ -26,9 +26,10 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="icon" jdbcType="VARCHAR" property="icon" />
     </resultMap>
     <select id="listInfo" resultMap="ResourceDTO">
-      SELECT a.id, a.name, a.content,a.remark, a.type_id, b.type_name, a.create_time, a.update_time
+      SELECT a.*, b.type_name
     FROM resources a,
          resource_type b
     WHERE b.id=a.type_id and a.enable=0
@@ -38,7 +39,7 @@
     <if test="page.index != null and page.index != ''">
         and a.type_id=#{page.index}
     </if>
-     order by a.id desc
+     order by a.create_time desc
     limit #{page.size} offset #{page.offset};
     </select>
 
@@ -47,7 +48,7 @@
 </update>
 
 <insert id="insertResource" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-    INSERT INTO resources (remark, name, content, type_id ) VALUES
-    (#{en.remark},#{en.name},#{en.content},#{en.typeId})
+    INSERT INTO resources (name, content, type_id,remark,icon ) VALUES
+    (#{en.name},#{en.content},#{en.typeId},#{en.remark},#{en.icon})
 </insert>
 </mapper>

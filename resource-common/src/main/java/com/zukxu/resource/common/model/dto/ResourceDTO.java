@@ -63,4 +63,9 @@ public class ResourceDTO {
 	 */
 	@ApiModelProperty(value = "备注")
 	private String remark;
+	/**
+	 * icon地址
+	 */
+	@ApiModelProperty(value = "icon地址")
+	private String icon;
 }

@@ -27,8 +27,8 @@ public class MinioController {
 	@Autowired
 	IUploadFileService uploadFileService;
 
-	@ApiOperation(value = "获取文件")
-	@GetMapping("/List")
+	@ApiOperation(value = "获取文件列表")
+	@GetMapping("/list")
 	public List getFile() {
 		return uploadFileService.list();
 	}
@@ -60,7 +60,7 @@ public class MinioController {
 	 * minio文件删除
 	 */
 	@ApiOperation("minio文件删除")
-	@DeleteMapping("/minio/del")
+	@DeleteMapping("/del")
 	public Result minioDel(String fileName) {
 		uploadFileService.minioDel(fileName);
 		return Result.success();
