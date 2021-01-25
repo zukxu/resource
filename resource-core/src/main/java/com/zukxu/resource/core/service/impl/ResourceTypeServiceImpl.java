@@ -30,7 +30,8 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 	@Override
 	public boolean delTypeById(String id) {
 		if (typeMapper.deleteById(id) > 0) {
-			return resService.updResource(id) > 0;
+			resService.updResource(id);
+			return true;
 		}
 		return false;
 	}
