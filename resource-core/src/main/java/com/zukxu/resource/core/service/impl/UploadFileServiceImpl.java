@@ -19,7 +19,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
 
 /**
  * Description:
@@ -76,7 +75,6 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		fileDTO.setObjectName(newFileName);
 		fileDTO.setUrl(url);
 		fileDTO.setThumbUrl(minioUtils.getBasisUrl() + url);
-		fileDTO.setCreateTime(LocalDateTime.now());
 		return fileDTO;
 	}
 
@@ -92,11 +90,11 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	public FileDTO minioUpload(MultipartFile file) {
 		//获取文件流
 		InputStream stream = FileUtils.getStreamByByte(file);
-		//判断文件类型并进行鉴黄操作
 		String bulkName = minio.getBucketName();
 		// minioUtils获取新的文件名，防止文件重复
 		String originalFilename = file.getOriginalFilename();
 		String fileName = FileUtils.getRandomFileName(originalFilename);
+		//上传
 		minioUtils.putObject(bulkName, fileName, stream);
 
 		String url = bulkName + "/" + fileName;
@@ -105,7 +103,6 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		fileDTO.setThumbUrl(minioUtils.getBasisUrl() + url);
 		fileDTO.setOriginName(originalFilename);
 		fileDTO.setObjectName(fileName);
-		fileDTO.setCreateTime(LocalDateTime.now());
 		return fileDTO;
 	}
 
