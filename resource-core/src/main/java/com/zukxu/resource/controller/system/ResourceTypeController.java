@@ -27,8 +27,8 @@ public class ResourceTypeController {
 
 	@ApiOperation("查询分类列表")
 	@GetMapping("/list")
-	public List<TypeDTO> pageInfo(PageDTO entity) {
-		return typeService.pageInfo(entity);
+	public Result<List<TypeDTO>> pageInfo(PageDTO entity) {
+		return Result.success(typeService.pageInfo(entity));
 	}
 
 	@ApiOperation("查询分类详情")

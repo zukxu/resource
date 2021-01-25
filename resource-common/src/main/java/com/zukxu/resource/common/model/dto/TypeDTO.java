@@ -29,13 +29,13 @@ public class TypeDTO {
 	 * 主键id
 	 */
 	@ApiModelProperty(value = "主键id")
-	private Integer key;
+	private Integer id;
 
 	/**
 	 * 资源分类名
 	 */
 	@ApiModelProperty(value = "资源分类名")
-	private String title;
+	private String typeName;
 
 	/**
 	 * 排序值（大）

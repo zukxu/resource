@@ -38,7 +38,9 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 
 	@Override
 	public List<TypeDTO> pageInfo(PageDTO entity) {
-		entity.setNewOffset();
+		if (entity.getCurrent() != null && entity.getSize() != null) {
+			entity.setNewOffset();
+		}
 		return typeMapper.selectTypeById(-1, entity.getSize(), entity.getOffset());
 	}
 

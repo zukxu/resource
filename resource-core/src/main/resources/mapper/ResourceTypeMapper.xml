@@ -16,8 +16,8 @@
     </resultMap>
 
     <resultMap id="typeDTO" type="com.zukxu.resource.common.model.dto.TypeDTO">
-        <id column="id" property="key"/>
-        <result column="type_name" property="title"/>
+        <id column="id" property="id"/>
+        <result column="type_name" property="typeName"/>
         <result column="sort" property="sort"/>
         <result column="icon" property="icon"/>
         <result column="parent_id" property="parentId"/>
@@ -32,30 +32,12 @@
         id, create_time, update_time, `enable`, remark, type_name, sort,icon,parent_id
     </sql>
 
-    <select id="selectByPage" resultMap="type">
-        select
-        <include refid="Base_Column_List"/>
-        from resource_type
-                where enable = 0
-        <if test="page.fields != null and page.fields != ''">
-            and type_name like CONCAT('%', #{page.fields}, '%')
-        </if>
-        and parent_id = -1
-                order by sort
-        <if test="page.size != null">
-            limit #{page.size}
-        </if>
-        <if test="page.offset != null">
-            offset #{page.offset}
-        </if>
-    </select>
-
     <select id="selectTypeById" resultMap="typeDTO">
         SELECT id,type_name,sort,icon,parent_id
         FROM resource_type
         WHERE enable = 0
           AND parent_id = #{parentId}
-        order by create_time desc
+        order by sort desc
         <if test="size != null">
             limit #{size}
         </if>
