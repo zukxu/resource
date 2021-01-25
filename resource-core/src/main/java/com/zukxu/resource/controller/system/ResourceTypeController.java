@@ -46,7 +46,7 @@ public class ResourceTypeController {
 	@ApiOperation("新增分类")
 	@PostMapping
 	public Result add(@RequestBody ResourceType entity) {
-		return typeService.save(entity) ? Result.success() : Result.failure();
+		return typeService.add(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("更新分类")

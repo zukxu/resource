@@ -34,4 +34,11 @@ public interface IResourceTypeService extends IService<ResourceType> {
 	 * @return
 	 */
 	List<ResourceType> getChildById(String id);
+
+	/**
+	 * 新增分类
+	 * @param entity
+	 * @return
+	 */
+	boolean add(ResourceType entity);
 }

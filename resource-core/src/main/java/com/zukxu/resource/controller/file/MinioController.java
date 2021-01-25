@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description:
@@ -38,9 +39,9 @@ public class MinioController {
 	 */
 	@ApiOperation("minio创建文件夹")
 	@PostMapping("/makeDir")
-	public void makeDir(String name) {
+	public void makeDir(@RequestBody Map map) {
 		//判断路径是否以/结尾
-		uploadFileService.mkdir(name);
+		uploadFileService.mkdir((String) map.get("name"));
 	}
 
 	/**
