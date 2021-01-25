@@ -1,8 +1,13 @@
 package com.zukxu.resource.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zukxu.resource.common.model.dto.PageDTO;import com.zukxu.resource.core.entity.ResourceType;
-import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;import java.util.List;
+import com.zukxu.resource.common.model.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.TypeDTO;
+import com.zukxu.resource.core.entity.ResourceType;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,4 +26,16 @@ public interface ResourceTypeMapper extends BaseMapper<ResourceType> {
 	 * @return
 	 */
 	List<ResourceType> selectByPage(@Param("page") PageDTO entity);
+
+	/**
+	 * 根据id查询
+	 *
+	 * @param parentId
+	 * @param size
+	 * @param offset
+	 * @return
+	 */
+	List<TypeDTO> selectTypeById(@Param("parentId") Integer parentId,
+								 @Param("size") Integer size,
+								 @Param("offset") Integer offset);
 }

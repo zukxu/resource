@@ -1,9 +1,9 @@
 package com.zukxu.resource.core.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zukxu.resource.common.model.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.TypeDTO;
 import com.zukxu.resource.core.entity.ResourceType;
 import com.zukxu.resource.core.mapper.ResourceTypeMapper;
 import com.zukxu.resource.core.service.IResourceTypeService;
@@ -37,15 +37,16 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 	}
 
 	@Override
-	public IPage<ResourceType> pageInfo(PageDTO entity) {
-		IPage<ResourceType> page = new Page<>();
-		List<ResourceType> typeList = typeMapper.selectByPage(entity);
-		if (entity.getCurrent() != null && entity.getSize() != null) {
-			entity.setNewOffset();
-			page.setCurrent(entity.getCurrent()).setSize(entity.getSize());
-		}
-		page.setRecords(typeList);
-		return page;
+	public List<TypeDTO> pageInfo(PageDTO entity) {
+		entity.setNewOffset();
+		return typeMapper.selectTypeById(-1, entity.getSize(), entity.getOffset());
+	}
+
+	@Override
+	public List<ResourceType> getChildById(String id) {
+		QueryWrapper<ResourceType> wrapper = new QueryWrapper<>();
+		wrapper.lambda().eq(ResourceType::getParentId, id);
+		return typeMapper.selectList(wrapper);
 	}
 }
 
