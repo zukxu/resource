@@ -24,9 +24,9 @@ create table if not exists resource_type
     sort        int        default 0                     null comment '排序值（大）',
     icon        varchar(255)                         null comment '图标',
     parent_id        int        default -1                     null comment '上层父id'
-)
+)AUTO_INCREMENT=100
     comment '资源分类表';
-INSERT INTO resource.resource_type (id, create_time, update_time, enable, remark, type_name, sort) VALUES (1, '2020-12-11 16:42:24', '2021-01-22 10:29:21', 0, null, '未分类', 0);
+
 create table if not exists resources
 (
     id          int auto_increment comment '主键id'
@@ -38,7 +38,7 @@ create table if not exists resources
     update_time timestamp  default '0000-00-00 00:00:00' not null on update CURRENT_TIMESTAMP comment '更新时间',
     enable      tinyint(1) default 0                     null comment '逻辑删除值,是否删除',
     remark      varchar(255)                             null comment '备注'
-)
+)AUTO_INCREMENT=100
     comment '资源表';
 
 create table if not exists sys_menu
@@ -57,7 +57,7 @@ create table if not exists sys_menu
     update_time timestamp   default '0000-00-00 00:00:00' not null on update CURRENT_TIMESTAMP comment '更新时间',
     update_by   varchar(64)                               null comment '更新人',
     hidden      tinyint(1)  default 0                     not null comment '是否隐藏菜单'
-)
+)AUTO_INCREMENT=100
     comment '菜单表';
 
 create table if not exists upload_file
@@ -69,6 +69,6 @@ create table if not exists upload_file
     create_time timestamp default CURRENT_TIMESTAMP not null comment '创建时间',
     method      int(4)    default 0                 null comment '文件上传方式（0-本地上传，1-oss，2-minio）',
     remark      varchar(255)                        null comment '备注'
-)
+)AUTO_INCREMENT=100
     comment '文件上传记录表';
 

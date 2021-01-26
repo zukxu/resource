@@ -1,5 +1,7 @@
 
-INSERT INTO resource.resource_type (create_time, update_time, enable, remark, type_name, sort) VALUES ('2020-12-11 16:42:24', '2021-01-22 10:29:21', 0, null, '未分类', 0);
+alter table resource_type auto_increment=100;
+INSERT INTO resource.resource_type (id,create_time, update_time, enable, remark, type_name, sort) VALUES (1,'2020-12-11
+16:42:24', '2021-01-22 10:29:21', 0, null, '未分类', 0);
 INSERT INTO resource.resource_type (create_time, update_time, enable, remark, type_name, sort) VALUES ('2021-01-20 17:47:19', '2021-01-22 10:44:56', 0, null, '生活休闲', 1);
 INSERT INTO resource.resource_type (create_time, update_time, enable, remark, type_name, sort) VALUES ('2021-01-20 17:47:19', '2021-01-22 10:44:56', 0, null, '影视资源', 2);
 INSERT INTO resource.resource_type (create_time, update_time, enable, remark, type_name, sort) VALUES ('2021-01-20 17:47:19', '2021-01-22 10:44:56', 0, null, '书籍学习', 3);
