@@ -47,7 +47,7 @@ public class TypeDTO {
 	 * 图标
 	 */
 	@ApiModelProperty(value = "图标")
-	private String icon;
+	private String pics;
 	/**
 	 * 上层父id
 	 */

@@ -66,12 +66,12 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 
 	@Override
 	public boolean add(ResourceType entity) {
-		if (StrUtil.isBlank(entity.getIcon())) {
+		if (StrUtil.isBlank(entity.getPics())) {
 			BufferedImage image = StrToImg.generateImg(entity.getTypeName());
 			InputStream stream = StrToImg.toUpload(image);
 			String fileName = entity.getTypeName() + Math.abs(new Random().nextInt()) + ".jpg";
 			minioUtils.putObject("res", fileName, stream);
-			entity.setIcon("res/" + fileName);
+			entity.setPics("res/" + fileName);
 		}
 		return typeMapper.insert(entity) > 0;
 	}

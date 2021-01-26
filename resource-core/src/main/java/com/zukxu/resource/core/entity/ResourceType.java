@@ -75,9 +75,9 @@ public class ResourceType implements Serializable {
 	/**
 	 * 图标
 	 */
-	@TableField(value = "icon")
+	@TableField(value = "pics")
 	@ApiModelProperty(value = "图标")
-	private String  icon;
+	private String  pics;
 	/**
 	 * 上层父id
 	 */

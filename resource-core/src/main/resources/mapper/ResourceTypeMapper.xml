@@ -11,7 +11,7 @@
         <result column="remark" property="remark"/>
         <result column="type_name" property="typeName"/>
         <result column="sort" property="sort"/>
-        <result column="icon" property="icon"/>
+        <result column="pics" property="pics"/>
         <result column="parent_id" property="parentId"/>
     </resultMap>
 
@@ -19,7 +19,7 @@
         <id column="id" property="id"/>
         <result column="type_name" property="typeName"/>
         <result column="sort" property="sort"/>
-        <result column="icon" property="icon"/>
+        <result column="pics" property="pics"/>
         <result column="parent_id" property="parentId"/>
         <association property="children"
                 select="com.zukxu.resource.core.mapper.ResourceTypeMapper.selectTypeById"
@@ -29,11 +29,11 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, create_time, update_time, `enable`, remark, type_name, sort,icon,parent_id
+        id, create_time, update_time, `enable`, remark, type_name, sort,pics,parent_id
     </sql>
 
     <select id="selectTypeById" resultMap="typeDTO">
-        SELECT id,type_name,sort,icon,parent_id
+        SELECT id,type_name,sort,pics,parent_id
         FROM resource_type
         WHERE enable = 0
           AND parent_id = #{parentId}

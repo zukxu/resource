@@ -55,8 +55,8 @@ public class ResourceTypeController {
 	@PutMapping
 	public Result upd(@RequestBody ResourceType entity) {
 		LambdaUpdateWrapper<ResourceType> wrapper = new LambdaUpdateWrapper<>();
-		if (StrUtil.isBlank(entity.getIcon())) {
-			wrapper.set(ResourceType::getIcon, null);
+		if (StrUtil.isBlank(entity.getPics())) {
+			wrapper.set(ResourceType::getPics, null);
 			wrapper.eq(ResourceType::getId, entity.getId());
 		}
 		return typeService.update(entity, wrapper) ? Result.success() : Result.failure();
