@@ -41,7 +41,7 @@ public class ResourceTypeController {
 
 	@ApiOperation("查询子级分类详情")
 	@GetMapping("/getChildType")
-	public List<ResourceType> getChildById(@RequestParam(value = "id") String id) {
+	public TypeDTO getChildById(@RequestParam(value = "id") String id) {
 		return typeService.getChildById(id);
 	}
 

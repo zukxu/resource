@@ -1,7 +1,6 @@
 package com.zukxu.resource.core.service.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.common.model.dto.TypeDTO;
@@ -11,6 +10,7 @@ import com.zukxu.resource.core.entity.ResourceType;
 import com.zukxu.resource.core.mapper.ResourceTypeMapper;
 import com.zukxu.resource.core.service.IResourceTypeService;
 import com.zukxu.resource.core.service.IResourcesService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,10 +53,15 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 	}
 
 	@Override
-	public List<ResourceType> getChildById(String id) {
-		QueryWrapper<ResourceType> wrapper = new QueryWrapper<>();
-		wrapper.lambda().eq(ResourceType::getParentId, id);
-		return typeMapper.selectList(wrapper);
+	public TypeDTO getChildById(String id) {
+		//根据id查询详情
+		TypeDTO typeDTO = new TypeDTO();
+		ResourceType resourceType = typeMapper.selectById(id);
+		BeanUtils.copyProperties(resourceType, typeDTO);
+
+		List<TypeDTO> list = typeMapper.selectTypeById(Integer.valueOf(id), 10, 0);
+		typeDTO.setChildren(list);
+		return typeDTO;
 	}
 
 	@Override

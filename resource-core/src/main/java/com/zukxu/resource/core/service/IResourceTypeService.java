@@ -33,7 +33,7 @@ public interface IResourceTypeService extends IService<ResourceType> {
 	 * @param id
 	 * @return
 	 */
-	List<ResourceType> getChildById(String id);
+	TypeDTO getChildById(String id);
 
 	/**
 	 * 新增分类
