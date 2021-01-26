@@ -66,9 +66,9 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 			InputStream stream = StrToImg.toUpload(image);
 			String fileName = entity.getTypeName() + Math.abs(new Random().nextInt()) + ".jpg";
 			minioUtils.putObject("res", fileName, stream);
+			entity.setIcon("res/" + fileName);
 		}
-		typeMapper.insert(entity);
-		return false;
+		return typeMapper.insert(entity) > 0;
 	}
 }
 

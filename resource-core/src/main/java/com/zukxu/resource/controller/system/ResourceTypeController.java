@@ -1,5 +1,7 @@
 package com.zukxu.resource.controller.system;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.common.model.dto.TypeDTO;
 import com.zukxu.resource.common.result.Result;
@@ -52,7 +54,12 @@ public class ResourceTypeController {
 	@ApiOperation("更新分类")
 	@PutMapping
 	public Result upd(@RequestBody ResourceType entity) {
-		return typeService.updateById(entity) ? Result.success() : Result.failure();
+		LambdaUpdateWrapper<ResourceType> wrapper = new LambdaUpdateWrapper<>();
+		if (StrUtil.isBlank(entity.getIcon())) {
+			wrapper.set(ResourceType::getIcon, null);
+			wrapper.eq(ResourceType::getId, entity.getId());
+		}
+		return typeService.update(entity, wrapper) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("根据ID删除分类")
