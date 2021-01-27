@@ -1,33 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zukxu.resource.core.mapper.ResourceTypeMapper">
-    <resultMap id="BaseResultMap" type="com.zukxu.resource.core.entity.ResourceType">
+    <resultMap id="type" type="com.zukxu.resource.core.entity.ResourceType">
         <!--@mbg.generated-->
         <!--@Table resource_type-->
-        <id column="id" jdbcType="VARCHAR" property="id"/>
-        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="enable" jdbcType="BOOLEAN" property="enable"/>
-        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="enable" property="enable"/>
+        <result column="remark" property="remark"/>
+        <result column="type_name" property="typeName"/>
+        <result column="sort" property="sort"/>
+        <result column="pics" property="pics"/>
+        <result column="parent_id" property="parentId"/>
     </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        id, type_name, create_time, update_time, `enable`, remark
-    </sql>
-    <select id="selectOrderByClomn" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from resource_type
-    where enable=0
-    <if test="page.fields != null and page.fields != ''">
-    and type_name like CONCAT('%',#{page.fields},'%')
-</if>
-    order by CONVERT(type_name using gbk)
-    <if test="page.size != null">
 
-    limit #{page.size}
-</if>
-<if test="page.offset != null">
-offset #{page.offset}
-</if>
+    <resultMap id="typeDTO" type="com.zukxu.resource.common.model.dto.TypeDTO">
+        <id column="id" property="id"/>
+        <result column="type_name" property="typeName"/>
+        <result column="sort" property="sort"/>
+        <result column="pics" property="pics"/>
+        <result column="parent_id" property="parentId"/>
+        <association property="children"
+                select="com.zukxu.resource.core.mapper.ResourceTypeMapper.selectTypeById"
+                column="{parentId=id}"
+                fetchType="lazy">
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, create_time, update_time, `enable`, remark, type_name, sort,pics,parent_id
+    </sql>
+
+    <select id="selectTypeById" resultMap="typeDTO">
+        SELECT id,type_name,sort,pics,parent_id
+        FROM resource_type
+        WHERE enable = 0
+          AND parent_id = #{parentId}
+        order by sort desc
+        <if test="size != null">
+            limit #{size}
+        </if>
+        <if test="offset != null">
+            offset #{offset}
+        </if>
     </select>
 </mapper>

@@ -6,19 +6,18 @@ import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * UCloud配置类
+ * 线程池实体
  * </p>
  *
  * @author zukxu
- * @date 2021/1/7 0007 17:50
+ * @date 2021/1/22 0022 16:34
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "ucloud")
-public class UCloudProperties {
-	private String privateKey;
-	private String publicKey;
-	private String resourceId;
-	private String url;
-	private String flag;
+@ConfigurationProperties(prefix = "thread-pool")
+public class ThreadPoolProperties {
+	private int corePoolSize;
+	private int maxPoolSize;
+	private int queueCapacity;
+	private int keepAliveSeconds;
 }

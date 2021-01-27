@@ -30,6 +30,10 @@ public enum ResultStatus {
 	 * 参数为空
 	 */
 	PARAMS_IS_NULL(ProjectStatus.PARAMS_IS_NULL, "参数为空"),
+	/**
+	 * 参数错误
+	 */
+	DATA_IS_WRONG(ProjectStatus.DATA_IS_WRONG, "参数错误"),
 	;
 
 	/**

@@ -5,15 +5,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zukxu.resource.common.entity.dto.PageDTO;
-import com.zukxu.resource.common.entity.dto.ResourceDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.ResourceDTO;
+import com.zukxu.resource.core.entity.ResourceAffair;
 import com.zukxu.resource.core.entity.Resources;
 import com.zukxu.resource.core.mapper.ResourcesMapper;
+import com.zukxu.resource.core.service.IResourceAffairService;
 import com.zukxu.resource.core.service.IResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,13 +29,8 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 
 	@Autowired
 	ResourcesMapper resourcesMapper;
-
-	@Override
-	public Boolean batchDel(String[] ids) {
-		List<String> list = Arrays.asList(ids);
-		int i = resourcesMapper.deleteBatchIds(list);
-		return i > 0;
-	}
+	@Autowired
+	IResourceAffairService affairService;
 
 	@Override
 	public IPage<ResourceDTO> pageInfo(PageDTO entity) {
@@ -56,6 +53,19 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 	public int updResource(String typeId) {
 		return resourcesMapper.updResource(typeId);
 	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public boolean insert(Resources entity) {
+		int insert = resourcesMapper.insertResource(entity);
+		if (0 == insert) {
+			return false;
+		}
+		ResourceAffair affair = new ResourceAffair();
+		affair.setRelationId(entity.getId());
+		return affairService.save(affair);
+	}
 }
+
 
 

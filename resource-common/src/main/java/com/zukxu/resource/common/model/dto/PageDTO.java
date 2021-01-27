@@ -1,4 +1,4 @@
-package com.zukxu.resource.common.entity.dto;
+package com.zukxu.resource.common.model.dto;
 
 import lombok.Data;
 
@@ -23,7 +23,7 @@ public class PageDTO {
 	 */
 	private Integer offset;
 	/**
-	 * 索引
+	 * 分类索引
 	 */
 	private String index;
 	/**

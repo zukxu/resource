@@ -43,20 +43,34 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
+				//请求头
 				.allowedHeaders("*")
+				//请求方法
 				.allowedMethods("*")
+				//接受任意域名的请求。
 				.allowedOrigins("*")
+				//接受请求携带cookie
 				.allowCredentials(true)
 				.maxAge(3600);
 
 	}
 
 	/**
-	 * 修复String转换Object问题
+	 * 修复自定义异常处理String转换Object问题
 	 * @param converters
 	 */
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.removeIf(converter -> converter instanceof StringHttpMessageConverter);
 	}
+
+/*	@Bean
+	ObjectMapper jacksonObjectMapper() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		//实体类中没有的字段进行忽略
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		//设置日期格式
+		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH-mm-ss"));
+		return objectMapper;
+	}*/
 }

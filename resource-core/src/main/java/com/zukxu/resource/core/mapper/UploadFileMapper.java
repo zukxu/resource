@@ -5,10 +5,12 @@ import com.zukxu.resource.core.entity.UploadFile;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * Description:
+ * <p>
+ * $END
+ * </p>
  *
  * @author zukxu
- * @date 2020/10/22 0022 10:11
+ * @date 2021/1/20 0020 16:24
  */
 @Mapper
 public interface UploadFileMapper extends BaseMapper<UploadFile> {

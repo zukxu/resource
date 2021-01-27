@@ -1,10 +1,7 @@
 package com.zukxu.resource.common.utils;
 
 import com.zukxu.resource.common.result.enums.FileTypeEnums;
-import com.zukxu.resource.common.result.enums.FolderEnums;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -155,17 +152,5 @@ public final class FileTypeJudge {
 		}
 
 		return type;
-	}
-
-	public static void main(String args[]) throws Exception {
-		String path = "C:/Users/zukxu/Desktop/护理学-徐云贵-吉首大学.pdf";
-		Integer type = FileTypeJudge.isFileType(FileTypeJudge.getType(new FileInputStream(new File(path))));
-		FolderEnums[] enums = FolderEnums.values();
-		for (FolderEnums en : enums) {
-			if (en.getValue().equals(type)) {
-				System.out.println(en.getFolder());
-			}
-		}
-		System.out.println();
 	}
 }

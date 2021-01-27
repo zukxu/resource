@@ -1,6 +1,6 @@
 package com.zukxu.resource.controller.system;
 
-import com.zukxu.resource.common.entity.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.core.entity.Resources;
 import com.zukxu.resource.core.service.IResourcesService;
@@ -8,6 +8,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Description: 资源请求处理
@@ -37,12 +41,13 @@ public class ResourcesController {
 	@ApiOperation("新增资源")
 	@PostMapping
 	public Result add(@RequestBody Resources entity) {
-		return resourcesService.save(entity) ? Result.success() : Result.failure();
+		return resourcesService.insert(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("更新资源")
 	@PutMapping
 	public Result upd(@RequestBody Resources entity) {
+		entity.setUpdateTime(LocalDateTime.now());
 		return resourcesService.updateById(entity) ? Result.success() : Result.failure();
 	}
 
@@ -50,5 +55,13 @@ public class ResourcesController {
 	@DeleteMapping
 	public Result delete(String id) {
 		return resourcesService.removeById(id) ? Result.success() : Result.failure();
+	}
+
+	@ApiOperation("批量删除")
+	@DeleteMapping("/batchDel")
+	public Result deleteBatch(String ids) {
+		String[] idArray = ids.split(",");
+		List<String> list = Arrays.asList(idArray);
+		return resourcesService.removeByIds(list) ? Result.success() : Result.failure();
 	}
 }

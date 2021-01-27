@@ -1,6 +1,7 @@
 package com.zukxu.resource.common.utils;
 
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zukxu.resource.common.config.properties.MinioProperties;
 import io.minio.*;
 import io.minio.http.Method;
@@ -31,10 +32,11 @@ import java.util.Optional;
 @Component
 public class MinioUtils {
 	@Autowired
+	ObjectMapper objectMapper;
+	@Autowired
 	private MinioClient minioClient;
 	@Autowired
 	private MinioProperties minio;
-
 
 	// 存储桶操作
 
@@ -364,9 +366,10 @@ public class MinioUtils {
 	 * getBucketPolicy
 	 */
 	@SneakyThrows
-	public JSONObject getBucketPolicy(String bucketName) {
+	public JsonNode getBucketPolicy(String bucketName) {
 		String bucketPolicy = minioClient.getBucketPolicy(GetBucketPolicyArgs.builder().bucket(bucketName).build());
-		return JSONObject.parseObject(bucketPolicy);
+		JsonNode jsonNode = objectMapper.readTree(bucketPolicy);
+		return jsonNode;
 	}
 	/**
 	 setBucketPolicy 设置桶权限

@@ -2,8 +2,8 @@ package com.zukxu.resource.core.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zukxu.resource.common.entity.dto.PageDTO;
-import com.zukxu.resource.common.entity.dto.ResourceDTO;
+import com.zukxu.resource.common.model.dto.PageDTO;
+import com.zukxu.resource.common.model.dto.ResourceDTO;
 import com.zukxu.resource.core.entity.Resources;
 
 /**
@@ -22,14 +22,6 @@ public interface IResourcesService extends IService<Resources> {
 	IPage<ResourceDTO> pageInfo(PageDTO entity);
 
 	/**
-	 * 批量删除
-	 *
-	 * @param ids
-	 * @return
-	 */
-	Boolean batchDel(String[] ids);
-
-	/**
 	 * 修改分类为未分类
 	 *
 	 * @param typeId
@@ -37,4 +29,11 @@ public interface IResourcesService extends IService<Resources> {
 	 */
 	int updResource(String typeId);
 
+	/**
+	 * 插入数据
+	 *
+	 * @param entity
+	 * @return
+	 */
+	boolean insert(Resources entity);
 }

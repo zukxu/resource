@@ -1,7 +1,7 @@
 package com.zukxu.resource.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zukxu.resource.common.entity.dto.FileDTO;
+import com.zukxu.resource.common.model.dto.FileDTO;
 import com.zukxu.resource.core.entity.UploadFile;
 import org.springframework.web.multipart.MultipartFile;
 

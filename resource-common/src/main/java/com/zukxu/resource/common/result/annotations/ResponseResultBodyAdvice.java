@@ -1,10 +1,8 @@
 package com.zukxu.resource.common.result.annotations;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zukxu.resource.common.exception.ResultException;
 import com.zukxu.resource.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.http.HttpHeaders;
@@ -36,9 +34,6 @@ import java.lang.annotation.Annotation;
 public class ResponseResultBodyAdvice implements ResponseBodyAdvice<Object> {
 
 	private static final Class<? extends Annotation> ANNOTATION_TYPE = ResponseResultBody.class;
-
-	@Autowired
-	private ObjectMapper objectMapper;
 
 	/**
 	 * 判断类或者方法是否使用了 @ResponseResultBody

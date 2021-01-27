@@ -1,6 +1,6 @@
 package com.zukxu.resource.controller.file;
 
-import com.zukxu.resource.common.entity.dto.FileDTO;
+import com.zukxu.resource.common.model.dto.FileDTO;
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.common.result.annotations.ResponseResultBody;
 import com.zukxu.resource.common.result.enums.ResultStatus;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description:
@@ -27,12 +28,10 @@ public class MinioController {
 	@Autowired
 	IUploadFileService uploadFileService;
 
-	@ApiOperation(value = "获取文件")
-	@GetMapping("/List")
+	@ApiOperation(value = "获取文件列表")
+	@GetMapping("/list")
 	public List getFile() {
 		return uploadFileService.list();
-		// List<UploadFile> list =
-		// return Result.success(list);
 	}
 
 	/**
@@ -40,9 +39,9 @@ public class MinioController {
 	 */
 	@ApiOperation("minio创建文件夹")
 	@PostMapping("/makeDir")
-	public void makeDir(String name) {
+	public void makeDir(@RequestBody Map map) {
 		//判断路径是否以/结尾
-		uploadFileService.mkdir(name);
+		uploadFileService.mkdir((String) map.get("name"));
 	}
 
 	/**
@@ -62,7 +61,7 @@ public class MinioController {
 	 * minio文件删除
 	 */
 	@ApiOperation("minio文件删除")
-	@DeleteMapping("/minio/del")
+	@DeleteMapping("/del")
 	public Result minioDel(String fileName) {
 		uploadFileService.minioDel(fileName);
 		return Result.success();

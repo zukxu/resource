@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author zukxu
  */
 @SpringBootApplication
-public class ResourceServerApplication {
+public class Application {
 	public static void main(String[] args) {
-		SpringApplication.run(ResourceServerApplication.class, args);
+		SpringApplication.run(Application.class, args);
 		System.out.println("" +
 				"______  _   _   _   _   __    __  _   _  \n" +
 				"|___  / | | | | | | / /  \\ \\  / / | | | | \n" +
