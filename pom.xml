@@ -21,7 +21,6 @@
         <knife4j.version>2.0.5</knife4j.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
         <lombok.version>1.18.12</lombok.version>
-        <javax-validation.version>1.18.12</javax-validation.version>
         <hutool.version>5.4.4</hutool.version>
         <qurtz.version>2.3.0</qurtz.version>
         <minio.version>8.0.3</minio.version>
@@ -122,5 +121,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

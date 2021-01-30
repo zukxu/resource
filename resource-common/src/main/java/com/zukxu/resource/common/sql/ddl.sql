@@ -37,7 +37,7 @@ create table if not exists resources
     create_time timestamp  default CURRENT_TIMESTAMP     not null comment '创建时间',
     update_time timestamp  default '0000-00-00 00:00:00' not null on update CURRENT_TIMESTAMP comment '更新时间',
     enable      tinyint(1) default 0                     null comment '逻辑删除值,是否删除',
-    remark      varchar(255)                             null comment '备注'
+    remark      text                                     null comment '备注'
 )AUTO_INCREMENT=100
     comment '资源表';
 
