@@ -12,7 +12,6 @@ import com.zukxu.resource.core.entity.Resources;
 import com.zukxu.resource.core.mapper.ResourcesMapper;
 import com.zukxu.resource.core.service.IResourceAffairService;
 import com.zukxu.resource.core.service.IResourcesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +26,15 @@ import java.util.List;
 @Service
 public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources> implements IResourcesService {
 
-	@Autowired
+	final
 	ResourcesMapper resourcesMapper;
-	@Autowired
+	final
 	IResourceAffairService affairService;
+
+	public ResourcesServiceImpl(ResourcesMapper resourcesMapper, IResourceAffairService affairService) {
+		this.resourcesMapper = resourcesMapper;
+		this.affairService = affairService;
+	}
 
 	@Override
 	public IPage<ResourceDTO> pageInfo(PageDTO entity) {
@@ -66,6 +70,3 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 		return affairService.save(affair);
 	}
 }
-
-
-

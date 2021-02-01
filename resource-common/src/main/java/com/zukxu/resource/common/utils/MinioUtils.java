@@ -250,7 +250,8 @@ public class MinioUtils {
 	public boolean isFolderExist(String bucketName, String objectName) {
 		boolean exist = false;
 		String dirName = "";
-		if (objectName.endsWith("/")) {
+		String separatorChar = "/";
+		if (objectName.endsWith(separatorChar)) {
 			dirName = objectName.substring(0, objectName.length() - 1);
 		}
 		try {
