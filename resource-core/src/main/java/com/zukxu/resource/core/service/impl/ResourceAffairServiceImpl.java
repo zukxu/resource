@@ -7,6 +7,7 @@ import com.zukxu.resource.core.entity.Resources;
 import com.zukxu.resource.core.mapper.ResourceAffairMapper;
 import com.zukxu.resource.core.service.IResourceAffairService;
 import com.zukxu.resource.core.service.IResourcesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,12 +27,11 @@ import java.util.List;
 public class ResourceAffairServiceImpl extends ServiceImpl<ResourceAffairMapper, ResourceAffair> implements IResourceAffairService {
 
 	final
-	IResourcesService resourcesService;
-	final
 	ResourceAffairMapper affairMapper;
+	@Autowired
+	IResourcesService resourcesService;
 
-	public ResourceAffairServiceImpl(IResourcesService resourcesService, ResourceAffairMapper affairMapper) {
-		this.resourcesService = resourcesService;
+	public ResourceAffairServiceImpl(ResourceAffairMapper affairMapper) {
 		this.affairMapper = affairMapper;
 	}
 
