@@ -46,7 +46,7 @@ public class ResourceDTO {
 	/**
 	 * 分类名称
 	 */
-	@ApiModelProperty(value = "资源分类Id")
+	@ApiModelProperty(value = "资源分类名称")
 	private String typeName;
 	/**
 	 * 创建时间
