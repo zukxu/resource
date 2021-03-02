@@ -1,5 +1,6 @@
 package com.zukxu.resource.controller.file;
 
+import com.zukxu.resource.common.model.dto.FileDTO;
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.common.result.enums.ResultStatus;
 import com.zukxu.resource.core.entity.UploadFile;
@@ -27,7 +28,7 @@ public class FileController {
 
 	@ApiOperation(value = "获取文件")
 	@GetMapping("/fileList")
-	public Result getFile() {
+	public Result<List<UploadFile>> getFile() {
 		List<UploadFile> list = uploadFileService.list();
 		return Result.success(list);
 	}
@@ -37,7 +38,7 @@ public class FileController {
 	 */
 	@ApiOperation("文件本地上传")
 	@PostMapping
-	public Result fileUpload(@RequestParam("file") MultipartFile file) {
+	public Result<FileDTO> fileUpload(@RequestParam("file") MultipartFile file) {
 		if (file.isEmpty() || file.getSize() == 0) {
 			return Result.failure(ResultStatus.PARAMS_IS_NULL);
 		}
@@ -48,8 +49,8 @@ public class FileController {
 	 * 本地文件删除
 	 */
 	@ApiOperation("本地文件删除")
-	@DeleteMapping("/file/del")
-	public Result fileDel(String url) {
+	@DeleteMapping("/file/del/{url}")
+	public Result<Void> fileDel(@PathVariable("url") String url) {
 		uploadFileService.fileDel(url);
 		return Result.success();
 	}

@@ -79,11 +79,11 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	}
 
 	@Override
-	public void fileDel(String url) {
+	public boolean fileDel(String url) {
 		String name = url.substring(url.lastIndexOf("/") + 1);
 		url = uploadPath + name;
 		File file = new File(url);
-		file.delete();
+		return file.delete();
 	}
 
 	@Override
@@ -107,13 +107,13 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	}
 
 	@Override
-	public void mkdir(String name) {
-		if (!name.endsWith("/")) {
-			name += "/";
+	public void mkdir(String dirName) {
+		if (!dirName.endsWith("/")) {
+			dirName += "/";
 		}
-		boolean folderExist = minioUtils.isFolderExist(minio.getBucketName(), name);
+		boolean folderExist = minioUtils.isFolderExist(minio.getBucketName(), dirName);
 		if (!folderExist) {
-			minioUtils.putObject(minio.getBucketName(), name, new ByteArrayInputStream(new byte[]{}));
+			minioUtils.putObject(minio.getBucketName(), dirName, new ByteArrayInputStream(new byte[]{}));
 		}
 	}
 

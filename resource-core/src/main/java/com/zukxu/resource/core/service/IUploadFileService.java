@@ -16,32 +16,33 @@ public interface IUploadFileService extends IService<UploadFile> {
 	 * 图片上传至本地
 	 *
 	 * @param file
-	 * @return
+	 * @return fileDTO
 	 */
 	FileDTO fileUpload(MultipartFile file);
 
 	/**
 	 * 本地删除
 	 * @param url 链接
+	 * @return bool
 	 */
-	void fileDel(String url);
+	boolean fileDel(String url);
 
 	/**
 	 * minio文件上传
 	 * @param file
-	 * @return
+	 * @return fileDTO
 	 */
 	FileDTO minioUpload(MultipartFile file);
 
 	/**
 	 * minio文件删除
-	 * @param fileName
+	 * @param fileName 文件名
 	 */
 	void minioDel(String fileName);
 
 	/**
 	 * minio 创建文件夹
-	 * @param name
+	 * @param dirName 文件夹名称
 	 */
-	void mkdir(String name);
+	void mkdir(String dirName);
 }
