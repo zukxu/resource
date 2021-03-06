@@ -57,8 +57,8 @@ public class ResourceTypeController {
 		LambdaUpdateWrapper<ResourceType> wrapper = new LambdaUpdateWrapper<>();
 		if (StrUtil.isBlank(entity.getPics())) {
 			wrapper.set(ResourceType::getPics, null);
-			wrapper.eq(ResourceType::getId, entity.getId());
 		}
+		wrapper.eq(ResourceType::getId, entity.getId());
 		return typeService.update(entity, wrapper) ? Result.success() : Result.failure();
 	}
 
