@@ -47,13 +47,13 @@ public class ResourceTypeController {
 
 	@ApiOperation("新增分类")
 	@PostMapping
-	public Result add(@RequestBody ResourceType entity) {
+	public Result<Void> add(@RequestBody ResourceType entity) {
 		return typeService.add(entity) ? Result.success() : Result.failure();
 	}
 
 	@ApiOperation("更新分类")
 	@PutMapping
-	public Result upd(@RequestBody ResourceType entity) {
+	public Result<Void> upd(@RequestBody ResourceType entity) {
 		LambdaUpdateWrapper<ResourceType> wrapper = new LambdaUpdateWrapper<>();
 		if (StrUtil.isBlank(entity.getPics())) {
 			wrapper.set(ResourceType::getPics, null);
@@ -64,7 +64,7 @@ public class ResourceTypeController {
 
 	@ApiOperation("根据ID删除分类")
 	@DeleteMapping
-	public Result del(String id) {
+	public Result<Void> del(String id) {
 		return typeService.delTypeById(id) ? Result.success() : Result.failure();
 	}
 
