@@ -38,10 +38,11 @@ public class MinioController {
 	 * 创建文件夹
 	 */
 	@ApiOperation("minio创建文件夹")
-	@PostMapping("/makeDir/{dir}")
-	public void makeDir(@RequestBody Map map) {
+	@PostMapping("/makeDir")
+	public void makeDir(@RequestBody Map<String, Object> map) {
 		//判断路径是否以/结尾
-		uploadFileService.minioMkdir((String) map.get("name"));
+		String dir = (String) map.get("dir");
+		uploadFileService.minioMkdir(dir);
 	}
 
 	/**
