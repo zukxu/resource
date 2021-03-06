@@ -41,7 +41,7 @@ public class MinioController {
 	@PostMapping("/makeDir/{dir}")
 	public void makeDir(@RequestBody Map map) {
 		//判断路径是否以/结尾
-		uploadFileService.mkdir((String) map.get("name"));
+		uploadFileService.minioMkdir((String) map.get("name"));
 	}
 
 	/**

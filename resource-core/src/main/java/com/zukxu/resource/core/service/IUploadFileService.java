@@ -44,5 +44,5 @@ public interface IUploadFileService extends IService<UploadFile> {
 	 * minio 创建文件夹
 	 * @param dirName 文件夹名称
 	 */
-	void mkdir(String dirName);
+	void minioMkdir(String dirName);
 }

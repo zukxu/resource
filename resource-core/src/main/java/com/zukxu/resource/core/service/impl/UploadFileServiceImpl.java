@@ -107,7 +107,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	}
 
 	@Override
-	public void mkdir(String dirName) {
+	public void minioMkdir(String dirName) {
 		if (!dirName.endsWith("/")) {
 			dirName += "/";
 		}
