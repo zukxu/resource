@@ -27,7 +27,7 @@ public class FileController {
 	IUploadFileService uploadFileService;
 
 	@ApiOperation(value = "获取文件")
-	@GetMapping("/fileList")
+	@GetMapping("/list")
 	public Result<List<UploadFile>> getFile() {
 		List<UploadFile> list = uploadFileService.list();
 		return Result.success(list);
@@ -49,7 +49,7 @@ public class FileController {
 	 * 本地文件删除
 	 */
 	@ApiOperation("本地文件删除")
-	@DeleteMapping("/file/del/{url}")
+	@DeleteMapping("/del/{url}")
 	public Result<Void> fileDel(@PathVariable("url") String url) {
 		uploadFileService.fileDel(url);
 		return Result.success();

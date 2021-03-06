@@ -38,7 +38,7 @@ public class MinioController {
 	 * 创建文件夹
 	 */
 	@ApiOperation("minio创建文件夹")
-	@PostMapping("/makeDir")
+	@PostMapping("/makeDir/{dir}")
 	public void makeDir(@RequestBody Map map) {
 		//判断路径是否以/结尾
 		uploadFileService.mkdir((String) map.get("name"));
@@ -61,8 +61,8 @@ public class MinioController {
 	 * minio文件删除
 	 */
 	@ApiOperation("minio文件删除")
-	@DeleteMapping("/del")
-	public Result minioDel(String fileName) {
+	@DeleteMapping("/del/{url}")
+	public Result minioDel(@PathVariable("url") String fileName) {
 		uploadFileService.minioDel(fileName);
 		return Result.success();
 	}
