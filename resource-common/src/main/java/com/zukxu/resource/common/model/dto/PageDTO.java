@@ -1,6 +1,7 @@
 package com.zukxu.resource.common.model.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Description: 分页对象
@@ -9,6 +10,7 @@ import lombok.Data;
  * @date 2020/10/17 0017 17:39
  */
 @Data
+@Accessors(chain = true)
 public class PageDTO {
 	/**
 	 * 当前页

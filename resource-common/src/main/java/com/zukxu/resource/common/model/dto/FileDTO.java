@@ -1,6 +1,7 @@
 package com.zukxu.resource.common.model.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  * @date 2021/1/6 0006 11:36
  */
 @Data
+@Accessors(chain = true)
 public class FileDTO {
 	/**
 	 * 访问路径

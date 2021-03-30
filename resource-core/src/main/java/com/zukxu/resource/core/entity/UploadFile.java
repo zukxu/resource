@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
 @ApiModel(value = "com-zukxu-resource-core-entity-UploadFile")
 @Data
 @TableName(value = "upload_file")
+@Accessors(chain = true)
 public class UploadFile implements Serializable {
 	/**
 	 * 主键id

@@ -45,16 +45,12 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	@Override
 	public FileDTO fileUpload(MultipartFile file) {
 		//文件新名称
-		String newFileName = FileUtils.getRandomFileName(file.getOriginalFilename());
+		String originalFilename = file.getOriginalFilename();
+		String newFileName = FileUtils.getRandomFileName(originalFilename);
 		//设置文件存储路径，可以存放在你想要指定的路径里面
 		String filePath = uploadPath + "/" + newFileName;
 		// 判断文件上传目录是否存在
 		File newFile = new File(filePath);
-
-		if (!newFile.getParentFile().exists()) {
-			//如果目标文件所在的目录不存在，则创建父目录
-			newFile.getParentFile().mkdirs();
-		}
 
 		//将内存中的数据写入磁盘
 		try {
@@ -63,17 +59,13 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 			logger.info("文件上传成功！");
 		} catch (IOException e) {
 			e.printStackTrace();
+			logger.error("文件上传失败！");
 		}
 		//图片上传保存url
 		String url = returnPath + "/" + newFileName;
-		UploadFile uploadFile = new UploadFile();
-		uploadFile.setOriginName(file.getOriginalFilename());
-		uploadFile.setUrl(url);
+		UploadFile uploadFile = new UploadFile().setOriginName(originalFilename).setUrl(url);
 		uploadFileMapper.insert(uploadFile);
-		FileDTO fileDTO = new FileDTO();
-		fileDTO.setOriginName(file.getOriginalFilename());
-		fileDTO.setObjectName(newFileName);
-		fileDTO.setUrl(url);
+		FileDTO fileDTO = new FileDTO().setOriginName(originalFilename).setObjectName(newFileName).setUrl(url);
 		return fileDTO;
 	}
 
