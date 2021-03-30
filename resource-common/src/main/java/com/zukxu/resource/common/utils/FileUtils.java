@@ -1,5 +1,6 @@
 package com.zukxu.resource.common.utils;
 
+import cn.hutool.core.lang.UUID;
 import lombok.SneakyThrows;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.web.multipart.MultipartFile;
@@ -8,7 +9,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URI;
-import java.util.Random;
 
 /**
  * <p>
@@ -29,12 +29,15 @@ public final class FileUtils {
 	 */
 	@SneakyThrows
 	public static String getRandomFileName(String fileName) {
-		//生成随机数
-		Random rand = new Random();
-		int random = Math.abs(rand.nextInt());
-		fileName = random + fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
-
-		return fileName;
+		return UUID.randomUUID()+getSuffix(fileName);
+	}
+	/**
+	 * 获取文件后缀
+	 * @param fileName 文件名
+	 * @return 后缀
+	 */
+	public static String getSuffix(String fileName){
+		return fileName.substring(fileName.lastIndexOf("."));
 	}
 
 	/**
@@ -69,8 +72,8 @@ public final class FileUtils {
 	/**
 	 * 根据文件后缀进行分类
 	 *
-	 * @param file
-	 * @return
+	 * @param file 文件
+	 * @return 分类
 	 */
 	public static String getFileTypeBySuffix(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
@@ -108,8 +111,8 @@ public final class FileUtils {
 
 	/**
 	 * 获取当前host
-	 * @param uri
-	 * @return
+	 * @param uri url
+	 * @return URI
 	 */
 	public static URI getHost(URI uri) {
 		URI effectiveURI = null;

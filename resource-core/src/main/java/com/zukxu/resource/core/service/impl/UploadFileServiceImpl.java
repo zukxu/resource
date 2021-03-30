@@ -29,15 +29,14 @@ import java.io.InputStream;
 @Service
 public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadFile> implements IUploadFileService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(UploadFileServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(UploadFileServiceImpl.class);
+
 	@Autowired
 	UploadFileMapper uploadFileMapper;
-
 	@Autowired
 	private MinioProperties minio;
 	@Autowired
 	private MinioUtils minioUtils;
-
 	@Value("${file.uploadPath}")
 	private String uploadPath;
 	@Value("${file.returnPath}")
@@ -49,8 +48,9 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		String newFileName = FileUtils.getRandomFileName(file.getOriginalFilename());
 		//设置文件存储路径，可以存放在你想要指定的路径里面
 		String filePath = uploadPath + "/" + newFileName;
+		// 判断文件上传目录是否存在
 		File newFile = new File(filePath);
-		//判断目标文件所在目录是否存在
+
 		if (!newFile.getParentFile().exists()) {
 			//如果目标文件所在的目录不存在，则创建父目录
 			newFile.getParentFile().mkdirs();
@@ -60,12 +60,12 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		try {
 			//使用此方法保存必须要绝对路径且文件夹必须已存在,否则报错
 			file.transferTo(newFile);
-			LOGGER.info("文件上传成功！");
+			logger.info("文件上传成功！");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		//图片上传保存url
-		String url = returnPath  +"/"+ newFileName;
+		String url = returnPath + "/" + newFileName;
 		UploadFile uploadFile = new UploadFile();
 		uploadFile.setOriginName(file.getOriginalFilename());
 		uploadFile.setUrl(url);
