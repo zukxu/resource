@@ -7,6 +7,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Random;
 
 /**
@@ -103,5 +104,20 @@ public final class FileUtils {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * 获取当前host
+	 * @param uri
+	 * @return
+	 */
+	public static URI getHost(URI uri) {
+		URI effectiveURI = null;
+		try {
+			effectiveURI = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), null, null, null);
+		} catch (Throwable var4) {
+			effectiveURI = null;
+		}
+		return effectiveURI;
 	}
 }

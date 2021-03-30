@@ -37,8 +37,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		//文件上传路径映射
 		registry.addResourceHandler(returnPath)
 				.addResourceLocations("file:" + uploadPath);
-		// registry.addResourceHandler(returnPath + "/images/**")
-		// 		.addResourceLocations("file:" + uploadPath + "/images/");
 	}
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
@@ -64,13 +62,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		converters.removeIf(converter -> converter instanceof StringHttpMessageConverter);
 	}
 
-/*	@Bean
-	ObjectMapper jacksonObjectMapper() {
-		ObjectMapper objectMapper = new ObjectMapper();
-		//实体类中没有的字段进行忽略
-		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		//设置日期格式
-		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH-mm-ss"));
-		return objectMapper;
-	}*/
 }

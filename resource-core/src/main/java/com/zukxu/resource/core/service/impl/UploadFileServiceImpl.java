@@ -65,7 +65,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 			e.printStackTrace();
 		}
 		//图片上传保存url
-		String url = returnPath + "/" + newFileName;
+		String url = returnPath  +"/"+ newFileName;
 		UploadFile uploadFile = new UploadFile();
 		uploadFile.setOriginName(file.getOriginalFilename());
 		uploadFile.setUrl(url);
@@ -74,7 +74,6 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		fileDTO.setOriginName(file.getOriginalFilename());
 		fileDTO.setObjectName(newFileName);
 		fileDTO.setUrl(url);
-		fileDTO.setThumbUrl(minioUtils.getBasisUrl() + url);
 		return fileDTO;
 	}
 

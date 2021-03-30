@@ -3,6 +3,7 @@ package com.zukxu.resource.controller.file;
 import com.zukxu.resource.common.model.dto.FileDTO;
 import com.zukxu.resource.common.result.Result;
 import com.zukxu.resource.common.result.enums.ResultStatus;
+import com.zukxu.resource.common.utils.FileUtils;
 import com.zukxu.resource.core.entity.UploadFile;
 import com.zukxu.resource.core.service.IUploadFileService;
 import io.swagger.annotations.Api;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -38,11 +42,14 @@ public class FileController {
 	 */
 	@ApiOperation("文件本地上传")
 	@PostMapping
-	public Result<FileDTO> fileUpload(@RequestParam("file") MultipartFile file) {
+	public Result<FileDTO> fileUpload(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws URISyntaxException {
 		if (file.isEmpty() || file.getSize() == 0) {
 			return Result.failure(ResultStatus.PARAMS_IS_NULL);
 		}
-		return Result.success(uploadFileService.fileUpload(file));
+		FileDTO fileDTO = uploadFileService.fileUpload(file);
+		String thumbUrl= FileUtils.getHost(new URI(request.getRequestURL() + ""))+fileDTO.getUrl();
+		fileDTO.setThumbUrl(thumbUrl);
+		return Result.success(fileDTO);
 	}
 
 	/**
