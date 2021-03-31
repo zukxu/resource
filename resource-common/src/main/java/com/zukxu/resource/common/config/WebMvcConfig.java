@@ -35,7 +35,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		// addResourceLocations 指的是文件配置的目录
 		//文件上传路径映射
 		registry.addResourceHandler(uploadConfig.getReturnPath()+"/**")
-				.addResourceLocations("file://" + uploadConfig.getUploadPath()+"/");
+				.addResourceLocations("file:/" + uploadConfig.getUploadPath()+"/");
 	}
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
