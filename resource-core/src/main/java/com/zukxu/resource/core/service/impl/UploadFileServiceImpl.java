@@ -1,6 +1,7 @@
 package com.zukxu.resource.core.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zukxu.resource.common.config.properties.FileUploadConfigProperties;
 import com.zukxu.resource.common.config.properties.MinioProperties;
 import com.zukxu.resource.common.model.dto.FileDTO;
 import com.zukxu.resource.common.utils.FileUtils;
@@ -11,7 +12,6 @@ import com.zukxu.resource.core.service.IUploadFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,13 +34,11 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 	@Autowired
 	UploadFileMapper uploadFileMapper;
 	@Autowired
+	FileUploadConfigProperties fileProperty;
+	@Autowired
 	private MinioProperties minio;
 	@Autowired
 	private MinioUtils minioUtils;
-	@Value("${file.uploadPath}")
-	private String uploadPath;
-	@Value("${file.returnPath}")
-	private String returnPath;
 
 	@Override
 	public FileDTO fileUpload(MultipartFile file) {
@@ -48,7 +46,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 		String originalFilename = file.getOriginalFilename();
 		String newFileName = FileUtils.getRandomFileName(originalFilename);
 		//设置文件存储路径，可以存放在你想要指定的路径里面
-		String filePath = uploadPath + "/" + newFileName;
+		String filePath = fileProperty.getUploadPath() + "/" + newFileName;
 		// 判断文件上传目录是否存在
 		File newFile = new File(filePath);
 
@@ -62,17 +60,16 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileMapper, UploadF
 			logger.error("文件上传失败！");
 		}
 		//图片上传保存url
-		String url = returnPath + "/" + newFileName;
+		String url = fileProperty.getReturnPath() + "/" + newFileName;
 		UploadFile uploadFile = new UploadFile().setOriginName(originalFilename).setUrl(url);
 		uploadFileMapper.insert(uploadFile);
-		FileDTO fileDTO = new FileDTO().setOriginName(originalFilename).setObjectName(newFileName).setUrl(url);
-		return fileDTO;
+		return new FileDTO().setOriginName(originalFilename).setObjectName(newFileName).setUrl(url);
 	}
 
 	@Override
 	public boolean fileDel(String url) {
 		String name = url.substring(url.lastIndexOf("/") + 1);
-		url = uploadPath + name;
+		url = fileProperty.getUploadPath() + name;
 		File file = new File(url);
 		return file.delete();
 	}
