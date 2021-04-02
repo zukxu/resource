@@ -29,11 +29,19 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, create_time, update_time, `enable`, remark, type_name, sort,pics,parent_id
+        id,
+        create_time,
+        update_time,
+        `enable`,
+        remark,
+        type_name,
+        sort,
+        pics,
+        parent_id
     </sql>
 
     <select id="selectTypeById" resultMap="typeDTO">
-        SELECT id,type_name,sort,pics,parent_id
+        SELECT id, type_name, sort, pics, parent_id
         FROM resource_type
         WHERE enable = 0
           AND parent_id = #{parentId}
@@ -45,4 +53,8 @@
             offset #{offset}
         </if>
     </select>
+    <select id="countType" resultType="java.util.HashMap">
+select rt.type_name as name, count(r.id) as value from resources r,resource_type rt where r.type_id=rt.id group by r.type_id;
+</select>
+
 </mapper>

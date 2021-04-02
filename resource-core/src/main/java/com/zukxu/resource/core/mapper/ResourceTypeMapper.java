@@ -7,6 +7,7 @@ import com.zukxu.resource.core.entity.ResourceType;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -35,7 +36,11 @@ public interface ResourceTypeMapper extends BaseMapper<ResourceType> {
 	 * @param offset
 	 * @return
 	 */
-	List<TypeDTO> selectTypeById(@Param("parentId") Integer parentId,
-								 @Param("size") Integer size,
-								 @Param("offset") Integer offset);
+	List<TypeDTO> selectTypeById(@Param("parentId") Integer parentId, @Param("size") Integer size, @Param("offset") Integer offset);
+
+	/**
+	 * 查询每种分类的数量
+	 * @return map
+	 */
+	List<HashMap<String, Integer>> countType();
 }

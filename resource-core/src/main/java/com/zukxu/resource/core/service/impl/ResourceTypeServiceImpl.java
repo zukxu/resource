@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -74,6 +75,11 @@ public class ResourceTypeServiceImpl extends ServiceImpl<ResourceTypeMapper, Res
 			entity.setPics("res/" + fileName);
 		}
 		return typeMapper.insert(entity) > 0;
+	}
+
+	@Override
+	public List<HashMap<String, Integer>> countType() {
+		return typeMapper.countType();
 	}
 }
 

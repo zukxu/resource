@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -66,6 +67,11 @@ public class ResourceTypeController {
 	@DeleteMapping
 	public Result<Void> del(String id) {
 		return typeService.delTypeById(id) ? Result.success() : Result.failure();
+	}
+	@ApiOperation("统计分类数量")
+	@GetMapping("/countType")
+	public Result<List<HashMap<String, Integer>>> countType() {
+		return Result.success(typeService.countType());
 	}
 
 }

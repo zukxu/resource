@@ -5,6 +5,7 @@ import com.zukxu.resource.common.model.dto.PageDTO;
 import com.zukxu.resource.common.model.dto.TypeDTO;
 import com.zukxu.resource.core.entity.ResourceType;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,4 +42,6 @@ public interface IResourceTypeService extends IService<ResourceType> {
 	 * @return
 	 */
 	boolean add(ResourceType entity);
+
+	List<HashMap<String, Integer>> countType();
 }
